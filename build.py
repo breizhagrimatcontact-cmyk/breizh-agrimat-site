@@ -172,9 +172,13 @@ def row_to_equipment(row: dict) -> dict | None:
     summary = get_prop(props, "Summary", "")
     photo_urls = get_prop(props, "Files & media", []) or []
 
-    # Tagline = Summary si présent, sinon premières chars des notes
-    tagline = summary or (notes[:100] + "..." if len(notes) > 100 else notes)
-    tagline = tagline.replace("\n", " ").strip()
+    # Tagline = courte phrase d'accroche basée sur la 1ère caractéristique du Summary, sinon sur Notes
+    if summary:
+        # Première bullet du summary, sans le tiret initial, max 100 chars
+        first_line = next((line.lstrip("- •*\t ").strip() for line in summary.split("\n") if line.strip()), "")
+        tagline = first_line[:100]
+    else:
+        tagline = (notes[:100] + "..." if len(notes) > 100 else notes).replace("\n", " ").strip()
 
     slug = slugify(reference)
 
@@ -192,10 +196,13 @@ def row_to_equipment(row: dict) -> dict | None:
             if download_and_resize(url, dest):
                 photo_filenames.append(filename)
 
-    # Caractéristiques: extrait des notes sous forme de bullet list
-    features = [line.strip(" -•*\t") for line in notes.split("\n") if line.strip()]
-    # On ignore la 1ère ligne si elle ressemble à "Bonjour, je vends..."
-    features = [f for f in features if not re.match(r"^(bonjour|hello)", f, re.I)][:10]
+    # Caractéristiques: priorité au Summary (généré par Notion AI), fallback sur Notes
+    if summary:
+        features = [line.lstrip("- •*\t ").strip() for line in summary.split("\n") if line.strip()]
+    else:
+        features = [line.strip(" -•*\t") for line in notes.split("\n") if line.strip()]
+        features = [f for f in features if not re.match(r"^(bonjour|hello)", f, re.I)]
+    features = [f for f in features if f][:10]
 
     return {
         "slug": slug,
