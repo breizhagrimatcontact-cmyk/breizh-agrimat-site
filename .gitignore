@@ -1,0 +1,8 @@
+# Fichiers locaux à ne pas envoyer sur GitHub
+.env
+.env.local
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+venv/
