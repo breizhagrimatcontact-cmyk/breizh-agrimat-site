@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breizh Agrimat — Used Agricultural Equipment from France</title>
+<meta name="description" content="Used tractors and agricultural equipment sourced directly from French farms. Export-ready, fully documented, immediate availability.">
+<meta property="og:title" content="Breizh Agrimat — Used Agricultural Equipment">
+<meta property="og:description" content="Used tractors sourced from French farms. Export-ready.">
+<meta property="og:type" content="website">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #2d5016;
+    --primary-dark: #1f3a0e;
+    --accent: #d4a017;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #666;
+    --border: #e5e5e0;
+    --whatsapp: #25d366;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+  }
+  header {
+    background: var(--primary); color: white; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-mark { width: 36px; height: 36px; background: var(--accent); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .logo-text { font-weight: 700; font-size: 18px; letter-spacing: 0.5px; }
+  .logo-tag { font-size: 11px; opacity: 0.85; letter-spacing: 1px; text-transform: uppercase; }
+  .wa-button-top {
+    background: var(--whatsapp); color: white; padding: 8px 16px;
+    border-radius: 24px; text-decoration: none; font-weight: 600;
+    font-size: 14px; display: inline-flex; align-items: center; gap: 6px;
+    transition: transform 0.15s;
+  }
+  .wa-button-top:hover { transform: scale(1.05); }
+  .wa-icon { width: 16px; height: 16px; fill: white; }
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white; padding: 60px 24px 70px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%); }
+  .hero h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; letter-spacing: -0.5px;
+    margin-bottom: 12px; max-width: 800px; margin-left: auto; margin-right: auto; }
+  .hero p { font-size: 17px; opacity: 0.92; max-width: 620px; margin: 0 auto 24px; }
+  .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 32px; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 32px; font-weight: 800; color: var(--accent); }
+  .hero-stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; }
+  .filters-section { max-width: 1200px; margin: 0 auto; padding: 32px 24px 16px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .filter-label { font-size: 13px; color: var(--text-muted); margin-right: 4px;
+    text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .filter-pill { background: white; border: 1.5px solid var(--border); color: var(--text);
+    padding: 7px 14px; border-radius: 20px; font-size: 13px; cursor: pointer;
+    transition: all 0.15s; font-weight: 500; }
+  .filter-pill:hover { border-color: var(--primary); }
+  .filter-pill.active { background: var(--primary); border-color: var(--primary); color: white; }
+  .results-count { color: var(--text-muted); font-size: 14px; margin-left: auto; }
+  .grid { max-width: 1200px; margin: 0 auto; padding: 16px 24px 60px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+  .card { background: var(--card); border-radius: 14px; overflow: hidden;
+    box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column; }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .card-photo { aspect-ratio: 16/10; background: linear-gradient(135deg, #e8e8e0, #d0d0c8);
+    position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-photo-placeholder { color: rgba(0,0,0,0.25); text-align: center; font-size: 14px; padding: 20px; }
+  .card-photo-placeholder-icon { font-size: 48px; margin-bottom: 8px; }
+  .card-badge { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.95);
+    padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-badge.jd { background: #367C2B; color: white; }
+  .card-badge.fendt { background: #00A651; color: white; }
+  .card-badge.claas { background: #006633; color: #FFCC00; }
+  .card-badge.case { background: #BE1E2D; color: white; }
+  .card-badge.nh { background: #003C7E; color: white; }
+  .card-photo-count { position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.6);
+    color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
+  .card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .card-title { font-size: 19px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+  .card-subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 16px; min-height: 38px; }
+  .card-specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin-bottom: 16px; }
+  .card-spec { text-align: center; }
+  .card-spec-value { font-weight: 700; font-size: 15px; }
+  .card-spec-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.5px; margin-top: 2px; }
+  .card-price { font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+  .card-price-tag { font-size: 11px; color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 16px; }
+  .card-actions { display: flex; gap: 8px; margin-top: auto; }
+  .btn { flex: 1; padding: 11px 14px; border-radius: 10px; border: none; font-size: 14px;
+    font-weight: 600; cursor: pointer; text-decoration: none; text-align: center;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    transition: all 0.15s; }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-wa { background: var(--whatsapp); color: white; }
+  .btn-wa:hover { background: #1ebe57; }
+  .btn-wa svg { width: 16px; height: 16px; fill: white; }
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+    display: none; align-items: flex-start; justify-content: center; z-index: 200;
+    padding: 24px; overflow-y: auto; }
+  .modal-backdrop.active { display: flex; }
+  .modal { background: white; max-width: 880px; width: 100%; border-radius: 16px;
+    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin: 24px 0; }
+  .modal-header { padding: 24px 28px 18px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .modal-title { font-size: 26px; font-weight: 800; line-height: 1.2; }
+  .modal-subtitle { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+  .modal-close { background: var(--bg); border: none; width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer; font-size: 18px; color: var(--text-muted); flex-shrink: 0; }
+  .modal-close:hover { background: var(--border); }
+  .modal-body { padding: 24px 28px 28px; }
+  .modal-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px; margin-bottom: 24px; }
+  .modal-photo { aspect-ratio: 4/3; background: linear-gradient(135deg, #e8e8e0, #d0d0c8);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    color: rgba(0,0,0,0.3); font-size: 12px; overflow: hidden; }
+  .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .modal-keyfacts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    background: var(--bg); padding: 18px; border-radius: 10px; margin-bottom: 24px; }
+  .modal-keyfact { text-align: center; }
+  .modal-keyfact-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--text-muted); margin-bottom: 4px; }
+  .modal-keyfact-value { font-weight: 800; font-size: 18px; }
+  .modal-keyfact-value.price { color: var(--primary); }
+  .modal-section-title { font-size: 14px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--primary); margin-bottom: 12px; margin-top: 4px; }
+  .modal-features { background: var(--bg); padding: 18px 22px; border-radius: 10px; margin-bottom: 24px; }
+  .modal-features ul { padding-left: 20px; }
+  .modal-features li { padding: 4px 0; font-size: 14px; }
+  .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .modal-actions .btn { padding: 14px 20px; font-size: 15px; }
+  .section { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
+  .section h2 { font-size: 28px; font-weight: 800; margin-bottom: 20px; text-align: center; }
+  .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px; margin-top: 40px; }
+  .about-card { background: white; padding: 28px 24px; border-radius: 12px;
+    box-shadow: var(--shadow); text-align: center; }
+  .about-icon { font-size: 36px; margin-bottom: 12px; }
+  .about-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .about-card p { font-size: 14px; color: var(--text-muted); }
+  .contact { background: var(--primary); color: white; padding: 60px 24px; text-align: center; }
+  .contact h2 { color: white; }
+  .contact p { font-size: 17px; opacity: 0.9; margin: 12px auto 28px; max-width: 540px; }
+  .contact-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .contact-button { background: white; color: var(--primary); padding: 14px 24px;
+    border-radius: 30px; text-decoration: none; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px; transition: transform 0.15s; }
+  .contact-button:hover { transform: scale(1.05); }
+  .contact-button.wa { background: var(--whatsapp); color: white; }
+  footer { background: var(--primary-dark); color: rgba(255,255,255,0.7);
+    padding: 24px; text-align: center; font-size: 13px; }
+  footer a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 600px) {
+    .grid { padding: 12px 16px 40px; gap: 16px; }
+    .card-body { padding: 18px; }
+    .filters { gap: 6px; }
+    .filter-pill { font-size: 12px; padding: 6px 12px; }
+    .results-count { width: 100%; margin-left: 0; margin-top: 8px; }
+    .modal { margin: 8px 0; border-radius: 12px; }
+    .modal-header { padding: 18px 20px 14px; }
+    .modal-body { padding: 18px 20px 22px; }
+    .modal-title { font-size: 20px; }
+    .modal-keyfacts { grid-template-columns: repeat(2, 1fr); padding: 14px; }
+    .hero { padding: 44px 20px 50px; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">🚜</div>
+    <div>
+      <div class="logo-text">BREIZH AGRIMAT</div>
+      <div class="logo-tag">Used Agricultural Equipment · France</div>
+    </div>
+  </div>
+  <a class="wa-button-top" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener">
+    <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+    WhatsApp
+  </a>
+</header>
+
+<section class="hero">
+  <h1>Used Agricultural Equipment</h1>
+  <p>Sourced directly from French farms · Export-ready · Immediate availability</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="stat-total">0</div>
+      <div class="hero-stat-label">Equipment available</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="stat-brands">0</div>
+      <div class="hero-stat-label">Brands in stock</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">🇫🇷</div>
+      <div class="hero-stat-label">Sourced in France</div>
+    </div>
+  </div>
+</section>
+
+<div class="filters-section">
+  <div class="filters" id="filters">
+    <span class="filter-label">Brand:</span>
+    <button class="filter-pill active" data-brand="all">All</button>
+    <span class="results-count" id="results-count">0 results</span>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<section class="section" id="about">
+  <h2>How Breizh Agrimat Works</h2>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-icon">🇫🇷</div>
+      <h3>French sourcing</h3>
+      <p>Every machine sourced directly from French farms. Single owners, full service history, original documentation.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">📋</div>
+      <h3>Export-ready</h3>
+      <p>French registration document, maintenance logbook, export invoice. All paperwork prepared for cross-border delivery.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">📸</div>
+      <h3>Full transparency</h3>
+      <p>Detailed photos, video on request, on-site inspection welcome. Cold-start engine video available before commitment.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">🚚</div>
+      <h3>Logistics on request</h3>
+      <p>Ex-works pricing standard. Loading on truck arranged on request. Door-to-door freight quotes available.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Interested? Let's talk.</h2>
+  <p>Send a quick message — we reply fastest on WhatsApp. Photos, video, and pricing on request.</p>
+  <div class="contact-buttons">
+    <a class="contact-button wa" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener">
+      <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+      WhatsApp +33 7 69 49 90 10
+    </a>
+    <a class="contact-button" href="mailto:estebanm.0904@gmail.com">📧 estebanm.0904@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  Breizh Agrimat — Used Agricultural Equipment Broker · France · Export · 2026<br>
+  <a href="https://wa.me/33769499010" target="_blank" rel="noopener">+33 7 69 49 90 10</a>
+</footer>
+
+<div class="modal-backdrop" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<script>
+  // === STOCK DATA — auto-generated from Notion ===
+  const STOCK = [
+  {
+    "slug": "fendt-720-profil-2021",
+    "reference": "Fendt - 720 profil + - 2021",
+    "brand": "Fendt",
+    "model": "720 profil +",
+    "year": 2021,
+    "hours": 2800,
+    "power": null,
+    "price": 146000,
+    "type": "Tractor",
+    "tagline": "À vendre Fendt 720 profi + setting 2 Année 2021 Pompe 150l/min 4 DE arrière 1 DE avant 2800h GPS Egn...",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg"
+    ],
+    "features": [
+      "À vendre Fendt 720 profi + setting 2",
+      "Année 2021",
+      "Pompe 150l/min",
+      "4 DE arrière",
+      "1 DE avant",
+      "2800h",
+      "GPS Egnos",
+      "Relevage avant avec contrôle d’effort",
+      "Pneu arrière 650 75 38 neuf",
+      "Pneu avant 600 65 28 neuf"
+    ],
+    "notes_full": "À vendre Fendt 720 profi + setting 2\nAnnée 2021\nPompe 150l/min\n4 DE arrière\n1 DE avant\n2800h\nGPS Egnos\nRelevage avant avec contrôle d’effort\nPneu arrière 650 75 38 neuf\nPneu avant 600 65 28 neuf\n3 point hydraulique\n3e écrans\nSection contrôle\nRétroviseur électrique\nPlus d’informations sur demande"
+  },
+  {
+    "slug": "john-deere-6195-r-2019",
+    "reference": "John Deere - 6195 R - 2019",
+    "brand": "John Deere",
+    "model": "6195 R",
+    "year": 2019,
+    "hours": 2600,
+    "power": null,
+    "price": 105000,
+    "type": "Tractor",
+    "tagline": "Tracteur John Deere 6195 R avec 2600 heures PDF 540E/1000/1000E Pont avant suspendue et cabine suspe...",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg"
+    ],
+    "features": [
+      "Tracteur John Deere 6195 R avec 2600 heures",
+      "PDF 540E/1000/1000E",
+      "Pont avant suspendue et cabine suspendue",
+      "Boite autopwer 40KM/H",
+      "Frein hydraulique",
+      "Clim automatique",
+      "4 prises hydrauliques arrière et 1 avant",
+      "Tracteur autotrac avec activation guidage",
+      "Pneus Michelin avant et arrière 600/70R28 et 650/85R38",
+      "Usure des pneus avant et arrière environ 30%"
+    ],
+    "notes_full": "Tracteur John Deere 6195 R avec 2600 heures\nPDF 540E/1000/1000E\nPont avant suspendue et cabine suspendue\nBoite autopwer 40KM/H\nFrein hydraulique\nClim automatique\n4 prises hydrauliques arrière et 1 avant\nTracteur autotrac avec activation guidage\nPneus Michelin avant et arrière 600/70R28 et 650/85R38\nUsure des pneus avant et arrière environ 30%"
+  },
+  {
+    "slug": "john-deere-6155m-2021",
+    "reference": "John Deere - 6155M - 2021",
+    "brand": "John Deere",
+    "model": "6155M",
+    "year": 2021,
+    "hours": 2018,
+    "power": 150,
+    "price": 86500,
+    "type": "Tractor",
+    "tagline": "vends tracteur John deere 6155 M 2018 heures relevage avant prise de force avant pneu 650 arrière pn...",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg",
+      "photo-09.jpg",
+      "photo-10.jpg"
+    ],
+    "features": [
+      "vends tracteur John deere 6155 M",
+      "2018 heures",
+      "relevage avant",
+      "prise de force avant",
+      "pneu 650 arrière",
+      "pneu 540 avant de marque Michelin",
+      "cause retraite"
+    ],
+    "notes_full": "vends tracteur John deere 6155 M\n2018 heures\nrelevage avant\nprise de force avant\npneu 650 arrière\npneu 540 avant de marque Michelin\ncause retraite"
+  },
+  {
+    "slug": "john-deere-6145r-2019",
+    "reference": "John Deere - 6145R - 2019",
+    "brand": "John Deere",
+    "model": "6145R",
+    "year": 2019,
+    "hours": 3500,
+    "power": 165,
+    "price": 80000,
+    "type": "Tractor",
+    "tagline": "Tracteur agricole Etat : Occasion - très bon état Roues motrices : 4 RM Boîte de vitesses : variatio...",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg",
+      "photo-09.jpg",
+      "photo-10.jpg",
+      "photo-11.jpg",
+      "photo-12.jpg"
+    ],
+    "features": [
+      "Tracteur agricole",
+      "Etat : Occasion - très bon état",
+      "Roues motrices : 4 RM",
+      "Boîte de vitesses : variation continue. Optimisation moteur développement 165 ch",
+      "Dimension pneus avant : 600/65R28 Michelin",
+      "Usure pneus avant : 15%",
+      "Dimension pneus arrière : 900/50R46 Michelin",
+      "Usure pneus arrière : 10%",
+      "Vitesse maxi : 40 Km/h",
+      "Première main : Oui"
+    ],
+    "notes_full": "Tracteur agricole\nEtat : Occasion - très bon état\nRoues motrices : 4 RM\nBoîte de vitesses : variation continue. Optimisation moteur développement 165 ch\nDimension pneus avant : 600/65R28 Michelin\nUsure pneus avant : 15%\nDimension pneus arrière : 900/50R46 Michelin\nUsure pneus arrière : 10%\nVitesse maxi : 40 Km/h\nPremière main : Oui\nCabine suspendue\nActivation GPS Possibilité d'option un deuxième jeu de roue étroite\nDimension avant 320/85R36 Bkt 10% usure\nDimension pneu arrière 380/90R46 Bkt 10% usure\nENTRETIENT TOUJOUR EFFECTUE PAR LA Concession"
+  },
+  {
+    "slug": "john-deere-6110-m-2018",
+    "reference": "John Deere - 6110 M - 2018",
+    "brand": "John Deere",
+    "model": "6110 M",
+    "year": 2018,
+    "hours": 6150,
+    "power": 110,
+    "price": 48000,
+    "type": "Tractor",
+    "tagline": "Bonjour, je vend mon jd 6110m de 2018 avec 6150h. C'est une première main. L'entretien est à jour av...",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg"
+    ],
+    "features": [
+      "C'est une première main.",
+      "L'entretien est à jour avec carnet.",
+      "Les pneus sont neufs en bkt agrimax factor",
+      "420/70/28 et 520/70/38",
+      "Le tracteur est équipé des freins pneumatiques,",
+      "pont avant suspendu,",
+      "3 distributeurs double effet et retour libre, attelage complet avec barre oscillante, piton et gueule de loup,",
+      "clim,",
+      "boîte powerquad,",
+      "FAP vanne EGR et ad blue supprimé"
+    ],
+    "notes_full": "Bonjour, je vend mon jd 6110m de 2018 avec 6150h.\nC'est une première main.\nL'entretien est à jour avec carnet.\nLes pneus sont neufs en bkt agrimax factor\n420/70/28 et 520/70/38\nLe tracteur est équipé des freins pneumatiques,\npont avant suspendu,\n3 distributeurs double effet et retour libre, attelage complet avec barre oscillante, piton et gueule de loup,\nclim,\nboîte powerquad,\nFAP vanne EGR et ad blue supprimé\nChargeur mx t410+ avec manette propilot monté en 2019."
+  }
+][];
+
+  function eur(n) { return n ? new Intl.NumberFormat("en-US", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n) : "On request"; }
+  function num(n) { return n ? new Intl.NumberFormat("en-US").format(n) : "—"; }
+
+  function brandClass(brand) {
+    const b = (brand || "").toLowerCase();
+    if (b.includes("john deere")) return "jd";
+    if (b.includes("fendt")) return "fendt";
+    if (b.includes("claas")) return "claas";
+    if (b.includes("case")) return "case";
+    if (b.includes("new holland")) return "nh";
+    return "";
+  }
+
+  function waLink(eq) {
+    const txt = `Hello Esteban, I'm interested in the ${eq.brand} ${eq.model} (${eq.year}). Could you send more info / photos?`;
+    return `https://wa.me/33769499010?text=${encodeURIComponent(txt)}`;
+  }
+
+  function photoUrl(eq, idx) {
+    if (eq.photos && eq.photos.length > idx) {
+      return `photos/${eq.slug}/${eq.photos[idx]}`;
+    }
+    return null;
+  }
+
+  function photoOrPlaceholder(eq, idx, isModal) {
+    const url = photoUrl(eq, idx);
+    if (url) return `<img src="${url}" alt="${eq.brand} ${eq.model}" loading="lazy">`;
+    if (isModal) return `<span>Photo ${idx + 1}</span>`;
+    return `<div class="card-photo-placeholder"><div class="card-photo-placeholder-icon">🚜</div>Photos coming soon</div>`;
+  }
+
+  function buildBrandFilters() {
+    const brands = [...new Set(STOCK.map(e => e.brand))].sort();
+    const filters = document.getElementById("filters");
+    brands.forEach(b => {
+      const btn = document.createElement("button");
+      btn.className = "filter-pill";
+      btn.dataset.brand = b;
+      btn.textContent = b;
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        renderCards(b);
+      });
+      filters.insertBefore(btn, document.getElementById("results-count"));
+    });
+    document.querySelector(".filter-pill[data-brand='all']").addEventListener("click", () => {
+      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+      document.querySelector(".filter-pill[data-brand='all']").classList.add("active");
+      renderCards("all");
+    });
+  }
+
+  function renderCards(filterBrand) {
+    const grid = document.getElementById("grid");
+    const items = filterBrand && filterBrand !== "all" ? STOCK.filter(e => e.brand === filterBrand) : STOCK;
+    document.getElementById("results-count").textContent = `${items.length} result${items.length !== 1 ? "s" : ""}`;
+    if (items.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">No equipment in this category right now.</div>`;
+      return;
+    }
+    grid.innerHTML = items.map(eq => `
+      <div class="card">
+        <div class="card-photo">
+          ${photoOrPlaceholder(eq, 0, false)}
+          <div class="card-badge ${brandClass(eq.brand)}">${eq.brand}</div>
+          ${eq.photos && eq.photos.length > 0 ? `<div class="card-photo-count">📷 ${eq.photos.length}</div>` : ""}
+        </div>
+        <div class="card-body">
+          <div class="card-title">${eq.brand} ${eq.model}</div>
+          <div class="card-subtitle">${eq.year || ""}${eq.tagline ? " · " + eq.tagline : ""}</div>
+          <div class="card-specs">
+            <div class="card-spec"><div class="card-spec-value">${eq.year || "—"}</div><div class="card-spec-label">Year</div></div>
+            <div class="card-spec"><div class="card-spec-value">${num(eq.hours)} h</div><div class="card-spec-label">Hours</div></div>
+            <div class="card-spec"><div class="card-spec-value">${eq.power ? eq.power + " hp" : "—"}</div><div class="card-spec-label">Power</div></div>
+          </div>
+          <div class="card-price">${eur(eq.price)}</div>
+          <div class="card-price-tag">Asking price · ex-works France</div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openModal('${eq.slug}')">Details</button>
+            <a class="btn btn-wa" href="${waLink(eq)}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+              Ask
+            </a>
+          </div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function openModal(slug) {
+    const eq = STOCK.find(e => e.slug === slug);
+    if (!eq) return;
+    const photoCount = Math.max((eq.photos || []).length, 4);
+    const photosHtml = Array.from({length: photoCount}).map((_, i) =>
+      `<div class="modal-photo">${photoOrPlaceholder(eq, i, true)}</div>`
+    ).join("");
+    const featuresHtml = (eq.features || []).map(f => `<li>${f}</li>`).join("") || "<li>Full specifications on request via WhatsApp.</li>";
+
+    document.getElementById("modal-content").innerHTML = `
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">${eq.brand} ${eq.model}</div>
+          <div class="modal-subtitle">${eq.year || ""}${eq.tagline ? " · " + eq.tagline : ""}</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-photos">${photosHtml}</div>
+        <div class="modal-keyfacts">
+          <div class="modal-keyfact"><div class="modal-keyfact-label">Year</div><div class="modal-keyfact-value">${eq.year || "—"}</div></div>
+          <div class="modal-keyfact"><div class="modal-keyfact-label">Hours</div><div class="modal-keyfact-value">${num(eq.hours)} h</div></div>
+          <div class="modal-keyfact"><div class="modal-keyfact-label">Power</div><div class="modal-keyfact-value">${eq.power ? eq.power + " hp" : "—"}</div></div>
+          <div class="modal-keyfact"><div class="modal-keyfact-label">Price</div><div class="modal-keyfact-value price">${eur(eq.price)}</div></div>
+        </div>
+        <div class="modal-section-title">Highlights</div>
+        <div class="modal-features"><ul>${featuresHtml}</ul></div>
+        <div class="modal-actions">
+          <a class="btn btn-wa" href="${waLink(eq)}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+            Ask about this on WhatsApp
+          </a>
+          <a class="btn btn-primary" href="mailto:estebanm.0904@gmail.com?subject=Enquiry: ${encodeURIComponent(eq.brand + ' ' + eq.model + ' (' + eq.year + ')')}">📧 Email enquiry</a>
+        </div>
+      </div>
+    `;
+    document.getElementById("modal").classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+  // Initial render
+  document.getElementById("stat-total").textContent = STOCK.length;
+  document.getElementById("stat-brands").textContent = new Set(STOCK.map(e => e.brand)).size;
+  buildBrandFilters();
+  renderCards("all");
+</script>
+
+</body>
+</html>
