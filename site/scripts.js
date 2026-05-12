@@ -108,25 +108,6 @@ function initCounters() {
   });
 }
 
-// ===== LENIS SMOOTH SCROLL =====
-function initLenis() {
-  if (typeof Lenis === 'undefined') return;
-  const lenis = new Lenis({
-    duration: 1.1,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    touchMultiplier: 1.5,
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(time => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-  }
-}
 
 // ===== GSAP HERO ANIMATIONS =====
 function initHeroAnimations() {
@@ -236,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof I18N !== 'undefined') I18N.init();
   initReveal();
   initCounters();
-  initLenis();
   initHeroAnimations();
   initScrollAnimations();
   initSplide();
