@@ -1,969 +1,474 @@
+<!--
+  BREIZH AGRIMAT V2 — Home
+  =========================
+  Design: Direction B "Swiss Industrial" — dark, editorial, brass/olive
+  Palette: #0A0A0A bg, #C8A55A brass, #5A7A4A olive, #EDEDED text
+  Typography: Instrument Serif (display) + Inter (body) + JetBrains Mono (data)
+  Libs: GSAP + ScrollTrigger, Lenis (smooth scroll), Splide (carousel)
+  i18n: data-i18n attributes, JS runtime replacement, EN/FR/DE
+  No build step. Static HTML. Netlify deploy.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Breizh Agrimat — Used Agricultural Equipment from France</title>
-<meta name="description" content="Used tractors and agricultural equipment sourced directly from French farms. Export-ready, fully documented, immediate availability.">
-<meta property="og:title" content="Breizh Agrimat — Used Agricultural Equipment">
-<meta property="og:description" content="Used tractors sourced from French farms. Export-ready.">
+<title>Breizh Agrimat — Used Farm Equipment, Sourced and Verified Across Europe</title>
+<meta name="description" content="Breizh Agrimat is an independent French broker for used agricultural equipment. Pan-European sourcing, independent inspection, verified sellers, end-to-end handling.">
+<meta property="og:title" content="Breizh Agrimat — Used Farm Equipment Across Europe">
+<meta property="og:description" content="Independent French broker. Pan-European sourcing. Verified equipment. Trilingual service EN/FR/DE.">
 <meta property="og:type" content="website">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --primary: #2d5016;
-    --primary-dark: #1f3a0e;
-    --accent: #d4a017;
-    --bg: #fafaf7;
-    --card: #ffffff;
-    --text: #1a1a1a;
-    --text-muted: #666;
-    --border: #e5e5e0;
-    --whatsapp: #25d366;
-    --shadow: 0 2px 8px rgba(0,0,0,0.06);
-    --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
-  }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg); color: var(--text); line-height: 1.5;
-  }
-  header {
-    background: var(--primary); color: white; padding: 14px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow);
-  }
-  .logo { display: flex; align-items: center; gap: 10px; }
-  .logo-mark { width: 36px; height: 36px; background: var(--accent); border-radius: 8px;
-    display: flex; align-items: center; justify-content: center; font-size: 20px; }
-  .logo-text { font-weight: 700; font-size: 18px; letter-spacing: 0.5px; }
-  .logo-tag { font-size: 11px; opacity: 0.85; letter-spacing: 1px; text-transform: uppercase; }
-  .wa-button-top {
-    background: var(--whatsapp); color: white; padding: 8px 16px;
-    border-radius: 24px; text-decoration: none; font-weight: 600;
-    font-size: 14px; display: inline-flex; align-items: center; gap: 6px;
-    transition: transform 0.15s;
-  }
-  .wa-button-top:hover { transform: scale(1.05); }
-  .wa-icon { width: 16px; height: 16px; fill: white; }
-  .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white; padding: 60px 24px 70px; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .hero::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%); }
-  .hero h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; letter-spacing: -0.5px;
-    margin-bottom: 12px; max-width: 800px; margin-left: auto; margin-right: auto; }
-  .hero p { font-size: 17px; opacity: 0.92; max-width: 620px; margin: 0 auto 24px; }
-  .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 32px; flex-wrap: wrap; }
-  .hero-stat { text-align: center; }
-  .hero-stat-num { font-size: 32px; font-weight: 800; color: var(--accent); }
-  .hero-stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; }
-  .filters-section { max-width: 1200px; margin: 0 auto; padding: 32px 24px 16px; }
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  .filter-label { font-size: 13px; color: var(--text-muted); margin-right: 4px;
-    text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-  .filter-pill { background: white; border: 1.5px solid var(--border); color: var(--text);
-    padding: 7px 14px; border-radius: 20px; font-size: 13px; cursor: pointer;
-    transition: all 0.15s; font-weight: 500; }
-  .filter-pill:hover { border-color: var(--primary); }
-  .filter-pill.active { background: var(--primary); border-color: var(--primary); color: white; }
-  .results-count { color: var(--text-muted); font-size: 14px; margin-left: auto; }
-  .grid { max-width: 1200px; margin: 0 auto; padding: 16px 24px 60px;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
-  .card { background: var(--card); border-radius: 14px; overflow: hidden;
-    box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s;
-    display: flex; flex-direction: column; }
-  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-  .card-photo { aspect-ratio: 16/10; background: linear-gradient(135deg, #e8e8e0, #d0d0c8);
-    position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .card-photo-placeholder { color: rgba(0,0,0,0.25); text-align: center; font-size: 14px; padding: 20px; }
-  .card-photo-placeholder-icon { font-size: 48px; margin-bottom: 8px; }
-  .card-badge { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.95);
-    padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.5px; }
-  .card-badge.jd { background: #367C2B; color: white; }
-  .card-badge.fendt { background: #00A651; color: white; }
-  .card-badge.claas { background: #006633; color: #FFCC00; }
-  .card-badge.case { background: #BE1E2D; color: white; }
-  .card-badge.nh { background: #003C7E; color: white; }
-  .card-photo-count { position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.6);
-    color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
-  .card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
-  .card-title { font-size: 19px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
-  .card-subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 16px; min-height: 38px; }
-  .card-specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
-    padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    margin-bottom: 16px; }
-  .card-spec { text-align: center; }
-  .card-spec-value { font-weight: 700; font-size: 15px; }
-  .card-spec-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase;
-    letter-spacing: 0.5px; margin-top: 2px; }
-  .card-price { font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
-  .card-price-tag { font-size: 11px; color: var(--text-muted); text-transform: uppercase;
-    letter-spacing: 0.5px; margin-bottom: 16px; }
-  .card-actions { display: flex; gap: 8px; margin-top: auto; }
-  .btn { flex: 1; padding: 11px 14px; border-radius: 10px; border: none; font-size: 14px;
-    font-weight: 600; cursor: pointer; text-decoration: none; text-align: center;
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    transition: all 0.15s; }
-  .btn-primary { background: var(--primary); color: white; }
-  .btn-primary:hover { background: var(--primary-dark); }
-  .btn-wa { background: var(--whatsapp); color: white; }
-  .btn-wa:hover { background: #1ebe57; }
-  .btn-wa svg { width: 16px; height: 16px; fill: white; }
-  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55);
-    display: none; align-items: flex-start; justify-content: center; z-index: 200;
-    padding: 24px; overflow-y: auto; }
-  .modal-backdrop.active { display: flex; }
-  .modal { background: white; max-width: 880px; width: 100%; border-radius: 16px;
-    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin: 24px 0; }
-  .modal-header { padding: 24px 28px 18px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-  .modal-title { font-size: 26px; font-weight: 800; line-height: 1.2; }
-  .modal-subtitle { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
-  .modal-close { background: var(--bg); border: none; width: 36px; height: 36px;
-    border-radius: 50%; cursor: pointer; font-size: 18px; color: var(--text-muted); flex-shrink: 0; }
-  .modal-close:hover { background: var(--border); }
-  .modal-body { padding: 24px 28px 28px; }
-  .modal-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 8px; margin-bottom: 24px; }
-  .modal-photo { aspect-ratio: 4/3; background: linear-gradient(135deg, #e8e8e0, #d0d0c8);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    color: rgba(0,0,0,0.3); font-size: 12px; overflow: hidden; }
-  .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .modal-keyfacts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-    background: var(--bg); padding: 18px; border-radius: 10px; margin-bottom: 24px; }
-  .modal-keyfact { text-align: center; }
-  .modal-keyfact-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
-    color: var(--text-muted); margin-bottom: 4px; }
-  .modal-keyfact-value { font-weight: 800; font-size: 18px; }
-  .modal-keyfact-value.price { color: var(--primary); }
-  .modal-section-title { font-size: 14px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; color: var(--primary); margin-bottom: 12px; margin-top: 4px; }
-  .modal-features { background: var(--bg); padding: 18px 22px; border-radius: 10px; margin-bottom: 24px; }
-  .modal-features ul { padding-left: 20px; }
-  .modal-features li { padding: 4px 0; font-size: 14px; }
-  .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .modal-actions .btn { padding: 14px 20px; font-size: 15px; }
-  .section { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
-  .section h2 { font-size: 28px; font-weight: 800; margin-bottom: 20px; text-align: center; }
-  .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px; margin-top: 40px; }
-  .about-card { background: white; padding: 28px 24px; border-radius: 12px;
-    box-shadow: var(--shadow); text-align: center; }
-  .about-icon { font-size: 36px; margin-bottom: 12px; }
-  .about-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-  .about-card p { font-size: 14px; color: var(--text-muted); }
-  .contact { background: var(--primary); color: white; padding: 60px 24px; text-align: center; }
-  .contact h2 { color: white; }
-  .contact p { font-size: 17px; opacity: 0.9; margin: 12px auto 28px; max-width: 540px; }
-  .contact-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-  .contact-button { background: white; color: var(--primary); padding: 14px 24px;
-    border-radius: 30px; text-decoration: none; font-weight: 600;
-    display: inline-flex; align-items: center; gap: 8px; transition: transform 0.15s; }
-  .contact-button:hover { transform: scale(1.05); }
-  .contact-button.wa { background: var(--whatsapp); color: white; }
-  footer { background: var(--primary-dark); color: rgba(255,255,255,0.7);
-    padding: 24px; text-align: center; font-size: 13px; }
-  footer a { color: var(--accent); text-decoration: none; }
-  @media (max-width: 600px) {
-    .grid { padding: 12px 16px 40px; gap: 16px; }
-    .card-body { padding: 18px; }
-    .filters { gap: 6px; }
-    .filter-pill { font-size: 12px; padding: 6px 12px; }
-    .results-count { width: 100%; margin-left: 0; margin-top: 8px; }
-    .modal { margin: 8px 0; border-radius: 12px; }
-    .modal-header { padding: 18px 20px 14px; }
-    .modal-body { padding: 18px 20px 22px; }
-    .modal-title { font-size: 20px; }
-    .modal-keyfacts { grid-template-columns: repeat(2, 1fr); padding: 14px; }
-    .hero { padding: 44px 20px 50px; }
-    .hero-stats { gap: 28px; }
-  }
-</style>
+<meta property="og:url" content="https://breizh-agrimat.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://breizh-agrimat.com/">
+<link rel="alternate" hreflang="fr" href="https://breizh-agrimat.com/">
+<link rel="alternate" hreflang="de" href="https://breizh-agrimat.com/">
+<link rel="alternate" hreflang="x-default" href="https://breizh-agrimat.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Breizh Agrimat",
+  "description": "Independent French broker for used agricultural equipment across Europe",
+  "url": "https://breizh-agrimat.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Esteban Massue",
+    "birthPlace": "Treffendel, Brittany, France"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Treffendel",
+    "addressRegion": "Brittany",
+    "postalCode": "35380",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33769499010",
+  "email": "breizhagrimat@outlook.fr",
+  "areaServed": "Europe",
+  "knowsLanguage": ["en", "fr", "de"]
+}
+</script>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <div class="logo-mark">🚜</div>
-    <div>
-      <div class="logo-text">BREIZH AGRIMAT</div>
-      <div class="logo-tag">Used Agricultural Equipment · France</div>
-    </div>
-  </div>
-  <a class="wa-button-top" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener">
-    <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
-    WhatsApp
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Breizh Agrimat home">
+    <img src="/assets/logo-light.png" alt="Breizh Agrimat" class="logo-img">
   </a>
+  <nav class="header-nav">
+    <div class="header-links">
+      <a href="/stock/" data-i18n="nav.stock">Stock</a>
+      <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+      <a href="/a-propos/" data-i18n="nav.about">About</a>
+      <a href="/contact/" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+      <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="nav.browse">Browse stock</a>
+    </div>
+  </nav>
+  <button class="menu-toggle" aria-label="Menu"><span></span></button>
 </header>
 
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="/stock/" data-i18n="nav.stock">Stock</a>
+  <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+  <a href="/a-propos/" data-i18n="nav.about">About</a>
+  <a href="/contact/" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+  </div>
+</nav>
+
+<!-- HERO -->
 <section class="hero">
-  <h1>Used Agricultural Equipment</h1>
-  <p>Sourced directly from French farms · Export-ready · Immediate availability</p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num" id="stat-total">0</div>
-      <div class="hero-stat-label">Equipment available</div>
+  <div class="hero-bg" style="background-image:url('/assets/hero.jpg')"></div>
+  <div class="container hero-inner">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      <span data-i18n="hero.tag">Stock updated weekly</span>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num" id="stat-brands">0</div>
-      <div class="hero-stat-label">Brands in stock</div>
+    <h1 data-i18n-html="hero.title">Used farm equipment, sourced and verified across Europe.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">An independent French broker. Trilingual. Pan-European reach.</p>
+    <div class="hero-ctas">
+      <a href="/stock/" class="btn btn--primary btn--lg" data-i18n="hero.cta.browse">Browse stock</a>
+      <a href="/vendre/" class="btn btn--secondary btn--lg" data-i18n="hero.cta.sell">Sell your equipment</a>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">🇫🇷</div>
-      <div class="hero-stat-label">Sourced in France</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span data-counter="1000" data-counter-suffix="+">1,000+</span></div>
+        <div class="hero-stat-lbl" data-i18n="hero.stat.machines">machines sold</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span data-counter="12" data-counter-suffix="+">12+</span></div>
+        <div class="hero-stat-lbl" data-i18n="hero.stat.countries">European countries</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span class="accent">EN</span> · <span class="accent">FR</span> · <span class="accent">DE</span></div>
+        <div class="hero-stat-lbl" data-i18n="hero.stat.trilingual">Trilingual: EN · FR · DE</div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="filters-section">
-  <div class="filters" id="filters">
-    <span class="filter-label">Brand:</span>
-    <button class="filter-pill active" data-brand="all">All</button>
-    <span class="results-count" id="results-count">0 results</span>
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-label" data-i18n="marquee.label">Trusted brands we work with</div>
+  <div class="marquee-track" aria-hidden="true">
+    <span class="marquee-item">John Deere</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Claas</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Fendt</span><span class="marquee-sep"></span>
+    <span class="marquee-item">New Holland</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Massey Ferguson</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Case IH</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Valtra</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Deutz-Fahr</span><span class="marquee-sep"></span>
+    <span class="marquee-item">John Deere</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Claas</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Fendt</span><span class="marquee-sep"></span>
+    <span class="marquee-item">New Holland</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Massey Ferguson</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Case IH</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Valtra</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Deutz-Fahr</span><span class="marquee-sep"></span>
   </div>
 </div>
 
-<div class="grid" id="grid"></div>
-
-<section class="section" id="about">
-  <h2>How Breizh Agrimat Works</h2>
-  <div class="about-grid">
-    <div class="about-card">
-      <div class="about-icon">🇫🇷</div>
-      <h3>French sourcing</h3>
-      <p>Every machine sourced directly from French farms. Single owners, full service history, original documentation.</p>
+<!-- PILLARS -->
+<section class="pillars section" id="approach">
+  <div class="container">
+    <div class="pillars-header">
+      <div class="overline" data-i18n="pillars.overline">Our approach</div>
+      <h2 data-i18n="pillars.title">Four pillars of trust</h2>
     </div>
-    <div class="about-card">
-      <div class="about-icon">📋</div>
-      <h3>Export-ready</h3>
-      <p>French registration document, maintenance logbook, export invoice. All paperwork prepared for cross-border delivery.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">📸</div>
-      <h3>Full transparency</h3>
-      <p>Detailed photos, video on request, on-site inspection welcome. Cold-start engine video available before commitment.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">🚚</div>
-      <h3>Logistics on request</h3>
-      <p>Ex-works pricing standard. Loading on truck arranged on request. Door-to-door freight quotes available.</p>
+    <div class="pillars-grid">
+      <div class="pillar reveal">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.1.title">Pan-European sourcing</h3>
+        <p data-i18n="pillar.1.desc">Equipment found across France, UK, Germany, Netherlands, Poland, and more.</p>
+      </div>
+      <div class="pillar reveal reveal-d1">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.2.title">Independent inspection</h3>
+        <p data-i18n="pillar.2.desc">Every machine physically checked by a verified expert before purchase.</p>
+      </div>
+      <div class="pillar reveal reveal-d2">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.3.title">Verified sellers</h3>
+        <p data-i18n="pillar.3.desc">Full KYC and document validation. No unknown intermediaries.</p>
+      </div>
+      <div class="pillar reveal reveal-d3">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.4.title">End-to-end handling</h3>
+        <p data-i18n="pillar.4.desc">Paperwork, export documents, transport: we handle it all so you don't have to.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="contact">
-  <h2>Interested? Let's talk.</h2>
-  <p>Send a quick message — we reply fastest on WhatsApp. Photos, video, and pricing on request.</p>
-  <div class="contact-buttons">
-    <a class="contact-button wa" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener">
-      <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
-      WhatsApp +33 7 69 49 90 10
-    </a>
-    <a class="contact-button" href="mailto:breizhagrimat@outlook.fr">📧 breizhagrimat@outlook.fr</a>
+<!-- HOW IT WORKS -->
+<section class="stepper section">
+  <div class="container">
+    <div class="stepper-header">
+      <div class="overline" data-i18n="stepper.overline">How it works</div>
+      <h2 data-i18n="stepper.title">From search to delivery</h2>
+    </div>
+    <div class="stepper-track">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h4 data-i18n="step.1.title">Tell us what you need</h4>
+          <p data-i18n="step.1.desc">Brand, model, budget, timeline.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h4 data-i18n="step.2.title">We source across Europe</h4>
+          <p data-i18n="step.2.desc">Our network spans 12+ countries.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h4 data-i18n="step.3.title">We inspect & verify</h4>
+          <p data-i18n="step.3.desc">Independent expert on-site check.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <h4 data-i18n="step.4.title">Paperwork & shipping</h4>
+          <p data-i18n="step.4.desc">Export docs, invoicing, logistics.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <h4 data-i18n="step.5.title">Delivered to your door</h4>
+          <p data-i18n="step.5.desc">The machine arrives ready to work.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<footer>
-  Breizh Agrimat — Used Agricultural Equipment Broker · France · Export · 2026<br>
-  <a href="https://wa.me/33769499010" target="_blank" rel="noopener">+33 7 69 49 90 10</a>
+<!-- FEATURED STOCK -->
+<section class="featured section" id="featured">
+  <div class="container">
+    <div class="featured-header">
+      <div>
+        <div class="overline" data-i18n="featured.overline">Featured stock</div>
+        <h2 data-i18n="featured.title">Latest arrivals</h2>
+      </div>
+      <a href="/stock/" class="btn btn--outline" data-i18n="featured.viewall">View all stock</a>
+    </div>
+    <div class="featured-grid">
+      <div class="eq-card reveal">
+        <div class="eq-card-img">
+          <div class="eq-card-img-empty">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="eq-card-brand">John Deere</div>
+          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
+        </div>
+        <div class="eq-card-body">
+          <div class="eq-card-title">John Deere 6130M</div>
+          <div class="eq-card-tagline">Premium condition, full service history</div>
+          <div class="eq-card-specs">
+            <div class="eq-card-spec"><div class="eq-card-spec-val">2019</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">3,200h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">130hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
+          </div>
+          <div class="eq-card-bottom">
+            <div>
+              <div class="eq-card-price">&euro;52,000</div>
+              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
+            </div>
+            <div class="eq-card-btns">
+              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="eq-card reveal reveal-d1">
+        <div class="eq-card-img">
+          <div class="eq-card-img-empty">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="eq-card-brand">Fendt</div>
+          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
+        </div>
+        <div class="eq-card-body">
+          <div class="eq-card-title">Fendt 720 Profi+</div>
+          <div class="eq-card-tagline">Vario transmission, front loader ready</div>
+          <div class="eq-card-specs">
+            <div class="eq-card-spec"><div class="eq-card-spec-val">2018</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">4,100h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">209hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
+          </div>
+          <div class="eq-card-bottom">
+            <div>
+              <div class="eq-card-price">&euro;78,000</div>
+              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
+            </div>
+            <div class="eq-card-btns">
+              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="eq-card reveal reveal-d2">
+        <div class="eq-card-img">
+          <div class="eq-card-img-empty">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="eq-card-brand">Claas</div>
+          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
+        </div>
+        <div class="eq-card-body">
+          <div class="eq-card-title">Claas Arion 640</div>
+          <div class="eq-card-tagline">CEBIS, 50km/h, air suspension</div>
+          <div class="eq-card-specs">
+            <div class="eq-card-spec"><div class="eq-card-spec-val">2017</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">5,800h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">155hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
+          </div>
+          <div class="eq-card-bottom">
+            <div>
+              <div class="eq-card-price">&euro;45,000</div>
+              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
+            </div>
+            <div class="eq-card-btns">
+              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story section--lg" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-image reveal">
+        <div class="story-image-placeholder">assets/esteban.jpg</div>
+      </div>
+      <div class="story-content">
+        <div class="overline reveal" data-i18n="story.overline">Our story</div>
+        <h2 class="reveal" data-i18n="story.title">Founded by a farmer's son in Brittany</h2>
+        <p class="reveal" data-i18n="story.p1">Esteban Massue grew up on a Breton farm in Treffendel, Ille-et-Vilaine.</p>
+        <p class="reveal" data-i18n="story.p2">At 21, he founded Breizh Agrimat to help farmers sell their used equipment — like a real estate agent for tractors.</p>
+        <p class="reveal" data-i18n="story.p3">After two years, 1,000+ machines sold and recognition from major French agricultural press, he's now scaling the model across Europe.</p>
+        <div class="press-logos reveal">
+          <span class="text-muted" style="font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;text-transform:uppercase" data-i18n="story.press">As featured in</span>
+          <a href="https://www.francebleu.fr/infos/economie-social/la-nouvelle-eco-esteban-massue-cree-le-bon-coin-des-agriculteurs-bretons-1634818691" class="press-logo" target="_blank" rel="noopener">France Bleu</a>
+          <a href="https://www.reussir.fr/machinisme/pourquoi-faire-appel-un-mandataire-agricole-pour-vendre-ses-materiels-doccasion" class="press-logo" target="_blank" rel="noopener">Réussir</a>
+          <a href="https://www.materielagricole.info/dans-ma-ferme/article/731627/esteban-massue-breizh-agrimat-vendre-son-materiel-na-jamais-ete-aussi-simple" class="press-logo" target="_blank" rel="noopener">Matériel Agricole Info</a>
+          <a href="https://www.terre-net-occasions.fr/breizh-agrimat/o71525" class="press-logo" target="_blank" rel="noopener">Terre-net</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="overline" data-i18n="testimonials.overline">Testimonials</div>
+      <h2 data-i18n="testimonials.title">Trusted across Europe</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial reveal">
+        <div class="testimonial-quote">Esteban delivered exactly what we asked for: a clean Fendt 720 Profi+ inspected, paperwork ready, on a truck within ten days. We've ordered three more since.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JD</div>
+          <div class="testimonial-info">
+            <div class="testimonial-name">James Doubleday</div>
+            <div class="testimonial-role">Doubleday Group</div>
+          </div>
+          <div class="testimonial-country">United Kingdom</div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-d1">
+        <div class="testimonial-quote">The verification report saved us a 1,200 km round-trip. Honest assessment, fair price, and the transport was handled door-to-door. Exactly the partner we needed in France.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div class="testimonial-info">
+            <div class="testimonial-name">Marek Kowalski</div>
+            <div class="testimonial-role">Agro-Trade Polska</div>
+          </div>
+          <div class="testimonial-country">Poland</div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-d2">
+        <div class="testimonial-quote">J'ai vendu mon Massey Ferguson sans bouger de la ferme. Esteban s'est occupé des photos, des appels, du contrat. Plus rapide et plus serein qu'une vente directe.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">PG</div>
+          <div class="testimonial-info">
+            <div class="testimonial-name">Pierre Le Goff</div>
+            <div class="testimonial-role">EARL des Quatre Vents</div>
+          </div>
+          <div class="testimonial-country">France</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUAL CTA -->
+<section class="dual-cta section">
+  <div class="container">
+    <div class="dual-cta-grid">
+      <div class="dual-cta-card reveal">
+        <div class="overline" data-i18n="cta.buy.overline">For buyers</div>
+        <h3 data-i18n="cta.buy.title">Looking for a specific machine?</h3>
+        <p data-i18n="cta.buy.desc">Tell us what you need. We'll source it across Europe within 14 days.</p>
+        <a href="/contact/" class="btn btn--primary btn--lg" data-i18n="cta.buy.btn">Send a request</a>
+      </div>
+      <div class="dual-cta-card reveal reveal-d1">
+        <div class="overline" data-i18n="cta.sell.overline">For sellers</div>
+        <h3 data-i18n="cta.sell.title">Have a machine to sell?</h3>
+        <p data-i18n="cta.sell.desc">Get a free valuation in 48h. We handle the rest.</p>
+        <a href="/vendre/" class="btn btn--outline btn--lg" data-i18n="cta.sell.btn">Get a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">BREIZH AGRIMAT</div>
+        <p class="brand-tagline" data-i18n="footer.tagline">Used farm equipment, sourced and verified across Europe.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.nav">Navigation</h4>
+        <a href="/stock/" data-i18n="nav.stock">Stock</a>
+        <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+        <a href="/a-propos/" data-i18n="nav.about">About</a>
+        <a href="/contact/" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="https://wa.me/33769499010" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:breizhagrimat@outlook.fr">breizhagrimat@outlook.fr</a>
+        <a href="tel:+33769499010">+33 7 69 49 90 10</a>
+        <span style="color:var(--text-faint);font-size:var(--text-xs);margin-top:var(--space-2);display:block" data-i18n="footer.hours">Mon-Sat 8AM-8PM CET</span>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-i18n="footer.copy">&copy; 2026 Breizh Agrimat. Founded in Brittany, France.</div>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<div class="modal-backdrop" id="modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal" id="modal-content"></div>
-</div>
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+</a>
 
-<script>
-  // === STOCK DATA — auto-generated from Notion ===
-  const STOCK = [
-  {
-    "slug": "fendt-933-gene-7-2024",
-    "reference": "Fendt - 933 gene 7 - 2024",
-    "brand": "Fendt",
-    "model": "933 gene 7",
-    "year": 2024,
-    "hours": 650,
-    "power": 330,
-    "price": 278000,
-    "type": "Tractor",
-    "tagline": "Five double‑acting rear hydraulic cylinders",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg",
-      "photo-08.jpg",
-      "photo-09.jpg",
-      "photo-10.jpg",
-      "photo-11.jpg",
-      "photo-12.jpg",
-      "photo-13.jpg",
-      "photo-14.jpg",
-      "photo-15.jpg",
-      "photo-16.jpg",
-      "photo-17.jpg"
-    ],
-    "features": [
-      "Five double‑acting rear hydraulic cylinders",
-      "Two front hydraulic cylinders",
-      "Three‑point hydraulic hitch front and rear",
-      "Front power take‑off (PTO)",
-      "RTK GPS guidance system",
-      "Wheel ballast two × 300 kg",
-      "Front tyres 650/65/34 Trelborg, 5 % wear",
-      "Rear tyres 710/75/42 Trelborg, 10 % wear",
-      "Full LED lighting",
-      "Transmission type 60"
-    ],
-    "notes_full": "Fendt 933 gene 7 profis plus setting 2 d'octobre 2024 650 h\n5 double effet arriere\n2 avant\n3 point hydraulique avant et arriere\nPrise de force avant\nGuidage rtk\nMasse de roue 2fois 300kg\nPack infos loisir\nPneue avant 650/65/34 trelborg vf 5 % d'usure\nPneu arriere 710/75/42 trelborg vf 10% d'usure\nFull led\nBoite 60"
-  },
-  {
-    "slug": "john-deere-6r-195-2023",
-    "reference": "John Deere - 6R 195 - 2023",
-    "brand": "John Deere",
-    "model": "6R 195",
-    "year": 2023,
-    "hours": 467,
-    "power": 195,
-    "price": 160000,
-    "type": "Tractor",
-    "tagline": "CommandPRO and CommandARM control systems installed",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg"
-    ],
-    "features": [
-      "CommandPRO and CommandARM control systems installed",
-      "Front power take‑off and front lift",
-      "Air brakes, ultimate finish, 50 km/h top speed",
-      "Autotrac ready, antenna not included",
-      "All options, electric rearview mirror",
-      "K80 transmission",
-      "Third hydraulic point",
-      "Possibility of Setra license plate"
-    ],
-    "notes_full": "John Deere 6R 195\nCommand pro et command arm\nPrise de force et relevage avant\nFreinage air , finition ultimate , 50 km/h\nAutotrac ready sans antenne\nToute options, rétroviseur électrique\nK80 , 3em point hydraulique\nPossibilité plaque setra"
-  },
-  {
-    "slug": "fendt-720-profil-2021",
-    "reference": "Fendt - 720 profil + - 2021",
-    "brand": "Fendt",
-    "model": "720 profil +",
-    "year": 2021,
-    "hours": 2800,
-    "power": null,
-    "price": 142000,
-    "type": "Tractor",
-    "tagline": "150 L/min pump capacity",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg"
-    ],
-    "features": [
-      "150 L/min pump capacity",
-      "4 rear differential drives, 1 front differential drive",
-      "GPS Egnos navigation system",
-      "Front lift with effort control",
-      "Rear tyres new 650/75/38, front tyres new 600/65/28",
-      "Three-point hydraulic system",
-      "Electric rearview mirror and third display screen"
-    ],
-    "notes_full": "À vendre Fendt 720 profi + setting 2\nAnnée 2021\nPompe 150l/min\n4 DE arrière\n1 DE avant\n2800h\nGPS Egnos\nRelevage avant avec contrôle d’effort\nPneu arrière 650 75 38 neuf\nPneu avant 600 65 28 neuf\n3 point hydraulique\n3e écrans\nSection contrôle\nRétroviseur électrique\nPlus d’informations sur demande"
-  },
-  {
-    "slug": "new-holland-t7245-2023",
-    "reference": "New Holland - t7.245 - 2023",
-    "brand": "New Holland",
-    "model": "t7.245",
-    "year": 2023,
-    "hours": 2000,
-    "power": 245,
-    "price": 128500,
-    "type": "Tractor",
-    "tagline": "Autocommand vario transmission with 50 km/h top speed",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg"
-    ],
-    "features": [
-      "Autocommand vario transmission with 50 km/h top speed",
-      "Pneumatic brakes and brake on exhaust system installed",
-      "American rear axle with Scharmüller hitch, chape, piton, K80 included",
-      "Four rear and two front double‑acting hydraulic cylinders, multiple free returns",
-      "Front tyres size 600, rear tyres size 650",
-      "Pre‑installed GPS system and 12 V reverse lights with backup lamp",
-      "External camera screen, exterior and interior blowers, 31‑tone horn"
-    ],
-    "notes_full": "Vend new Holland t7.245\nAutocommand ( vario )\n1700h evolutif\nVitre teintée arrière\nBoîte 50km/h\nFrein pneumatique\nPont américain\nAttache scharmüller\nChape, piton , k80 fournis avec\n4 double effet arrière\n2 double effet avant\nPlusieurs retour libres\nPneus Arrière 650\nPneus Avant 600\nPrédisposition gps\nFrein sur échappement\n\nFull options\nTracteur acheter neuf\nSur demande peut fournir la liste détaillé des options\n\nÉquipement supplémentaire :\n- prise 12v pour marche arrière ( éclairage feux de recul, bip etc )\n- écran caméra avec prise installer à l’extérieur\n- soufflette extérieur\n- soufflette intérieur\n- klaxon 31 song\n- 2 trompes hadley 95 cm\n- sifflet turc\n- poppy bleu\n- cb président\n- tablette et tapis fabrication artisanale"
-  },
-  {
-    "slug": "massey-ferguson-6s-155-dyna-vt-2024",
-    "reference": "Massey Ferguson - 6s 155 dyna VT - 2024",
-    "brand": "Massey Ferguson",
-    "model": "6s 155 dyna VT",
-    "year": 2024,
-    "hours": 787,
-    "power": 155,
-    "price": 115000,
-    "type": "Tractor",
-    "tagline": "Maximum speed 50 km/h, exclusive configuration.",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg"
-    ],
-    "features": [
-      "Maximum speed 50 km/h, exclusive configuration.",
-      "5 rear electric distributors, 2 front, 1 lift, free return.",
-      "Closed center hydraulic circuit delivering 190 L/min.",
-      "Rear lift capacity 9 t 600 kg with third hydraulic point.",
-      "Front lift capacity 3 t 200 kg.",
-      "Tyres 460/85 R38 rear, 380/85 R28 front.",
-      "Datatronic 5 transmission, Trimble RTK GPS, full LED lighting, heated seat."
-    ],
-    "notes_full": "6s 155 dyna VT exclusive 50 km/h\n5 distributeurs electriques arrieres + 2 avant+ 1 pour relevage + retour libre\ncircuit centre fermé 190 l /min\nrelevage arrière 9t600 + 3ème point hydraulique\nrelevage avant 3t200\npont arrière avec arbre coulissant\npneus 460/85/r38 et 380/85/r28\ndatatronic 5\ngps trimble rtk\npack led complet\nsiège premium chauffant"
-  },
-  {
-    "slug": "john-deere-6195-r-2019",
-    "reference": "John Deere - 6195 R - 2019",
-    "brand": "John Deere",
-    "model": "6195 R",
-    "year": 2019,
-    "hours": 2600,
-    "power": null,
-    "price": 105000,
-    "type": "Tractor",
-    "tagline": "Suspended front axle and suspended cabin",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg"
-    ],
-    "features": [
-      "Suspended front axle and suspended cabin",
-      "Hydraulic brakes",
-      "Automatic climate control",
-      "Four rear hydraulic ports and one front",
-      "Autotrac guidance system with activation",
-      "Michelin tires front 600/70R28, rear 650/85R38",
-      "Approx. 30% wear on both front and rear tires"
-    ],
-    "notes_full": "Tracteur John Deere 6195 R avec 2600 heures\nPDF 540E/1000/1000E\nPont avant suspendue et cabine suspendue\nBoite autopwer 40KM/H\nFrein hydraulique\nClim automatique\n4 prises hydrauliques arrière et 1 avant\nTracteur autotrac avec activation guidage\nPneus Michelin avant et arrière 600/70R28 et 650/85R38\nUsure des pneus avant et arrière environ 30%"
-  },
-  {
-    "slug": "john-deere-6215r-2020",
-    "reference": "John Deere - 6215r - 2020",
-    "brand": "John Deere",
-    "model": "6215r",
-    "year": 2020,
-    "hours": 4000,
-    "power": 215,
-    "price": 97000,
-    "type": "Tractor",
-    "tagline": "Autopower Command Pro transmission",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg"
-    ],
-    "features": [
-      "Autopower Command Pro transmission",
-      "Integrated guidance system",
-      "Rear tyres: Michelin 710/70 R42",
-      "Front tyres: Michelin 600/70 R28",
-      "215 HP engine"
-    ],
-    "notes_full": "Vends John deere 6215r de 2020 avec 4000h boîte autopower command pro, guidage, pneumatiques arrières Michelin 710/70R42 avants Michelin 600/70R28"
-  },
-  {
-    "slug": "fendt-724-profi-plus-2021",
-    "reference": "Fendt - 724 profi plus - 2021",
-    "brand": "Fendt",
-    "model": "724 profi plus",
-    "year": 2021,
-    "hours": 6500,
-    "power": 240,
-    "price": 91000,
-    "type": "Tractor",
-    "tagline": "Dealer‑maintained service history",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg"
-    ],
-    "features": [
-      "Dealer‑maintained service history",
-      "Four new tires installed",
-      "RTK GPS navigation system",
-      "Pneumatic brake system and cabin suspension with 3‑point hitch",
-      "Electric mirrors and automatic climate control",
-      "Scharmüller hitch coupling",
-      "Five rear and one front hydraulic distributors, free return; LS and ISOBUS ports; Mailleux loader frame equipped"
-    ],
-    "notes_full": "Fendt 724 profi plus\nEntretien suivi par le concessionnaire\n4 pneus neufs\nGPS RTK\nFreinage pneumatique\nCabine suspendue pneumatique prise sur 3 points\nRétroviseurs électriques\nClimatisation automatique\nAttelage Scharmüller\n5 distributeurs hydrauliques à l’arrière et 1 à l’avant avec retour libre\nPrises LS, isobus\nEquipé d’un bâti chargeur Mailleux\nTrès bon état"
-  },
-  {
-    "slug": "claas-claas-arion-660-cmatic-2021",
-    "reference": "Claas - Claas arion 660 CMATIC - 2021",
-    "brand": "Claas",
-    "model": "Claas arion 660 CMATIC",
-    "year": 2021,
-    "hours": 3050,
-    "power": 200,
-    "price": 87000,
-    "type": "Tractor",
-    "tagline": "Gearbox rated for 50 km/h top speed",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg"
-    ],
-    "features": [
-      "Gearbox rated for 50 km/h top speed",
-      "Pneumatic brake system installed",
-      "Four-wheel drive (4 DE)",
-      "Front lift and power take‑off (PTO)",
-      "Front axle suspended",
-      "Mesh‑type loader frame attached"
-    ],
-    "notes_full": "Vend claas arion 660 cmatic\nboite 50 km/h\n3050 heures\nfreins pneumatiques\n4 DE\nrelevage et prise de force avant\nPont Av suspendu\nBâti de chargeur mailleux"
-  },
-  {
-    "slug": "john-deere-6155m-2021",
-    "reference": "John Deere - 6155M - 2021",
-    "brand": "John Deere",
-    "model": "6155M",
-    "year": 2021,
-    "hours": 2018,
-    "power": 150,
-    "price": 86500,
-    "type": "Tractor",
-    "tagline": "Front lift mechanism",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg",
-      "photo-08.jpg",
-      "photo-09.jpg",
-      "photo-10.jpg"
-    ],
-    "features": [
-      "Front lift mechanism",
-      "Front power take‑off",
-      "Rear tyres size 650, Michelin brand",
-      "Front tyres size 540, Michelin brand",
-      "Seller retiring the tractor"
-    ],
-    "notes_full": "vends tracteur John deere 6155 M\n2018 heures\nrelevage avant\nprise de force avant\npneu 650 arrière\npneu 540 avant de marque Michelin\ncause retraite"
-  },
-  {
-    "slug": "claas-axion-810-2014",
-    "reference": "Claas - axion 810 - 2014",
-    "brand": "Claas",
-    "model": "axion 810",
-    "year": 2014,
-    "hours": 3900,
-    "power": 210,
-    "price": 85000,
-    "type": "Tractor",
-    "tagline": "Suspended front axle",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg"
-    ],
-    "features": [
-      "Suspended front axle",
-      "Front lifting mechanism installed",
-      "Claas S10 auto‑guidance system fitted",
-      "Three electric distributors present",
-      "Low‑pressure tyres equipped",
-      "Suspended cabin; condition reported as correct, no defects noted"
-    ],
-    "notes_full": "Axion 810\npont avant suspendu\nrelevage avant\nauto guidage claas s10\n3 distributeur électrique\npneu basse pression\ncabine suspendu\nAutoguidage\nrien à signaler dessus état correct\nvend car arrêt des cultures."
-  },
-  {
-    "slug": "john-deere-6130r-2022",
-    "reference": "John Deere - 6130R - 2022",
-    "brand": "John Deere",
-    "model": "6130R",
-    "year": 2022,
-    "hours": 3900,
-    "power": 130,
-    "price": 84500,
-    "type": "Tractor",
-    "tagline": "Loader frame with 623R loader and cab shield",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg",
-      "photo-08.jpg"
-    ],
-    "features": [
-      "Loader frame with 623R loader and cab shield",
-      "Original front lift with 7-point hitch, position sensor, remote height switch",
-      "3,900 engine hours, service up to date, dealer maintained",
-      "Michelin tyres front 480/65 R28, rear 600/65 R38",
-      "ISOBUS Gen4 console version 4200",
-      "CommandPRO transmission, 50 km/h top speed, pneumatic brakes",
-      "LED lighting, panoramic roof, dual side doors"
-    ],
-    "notes_full": "Révision à jour, entretenu par concessionnaire, en très bon état.\n\nÉquipements supplémentaires :\n* Bâti de chargeur avec chargeur John Deere 623R et protège-calandre.\n* Relevage avant d’origine avec prise 7 plots, capteur de position et commande de hauteur à distance par interrupteur.\n\nÉquipements du tracteur :\n* 3 900 heures moteur ; \n* CommandARM avec levier multifonction et distributeurs électriques (x3).\n* CommandPRO avec boîte de vitesses 50 km/h et freinage pneumatique.\n* Pneus Michelin : avant 480/65 R28 — arrière 600/65 R38.\n* ISOBUS avec console Gen4 version 4200.\n* Prédisposition arrière LS / pression et retour (x2).\n* Prise de force arrière 540 / 540E et 1 000 tr/min.\n* Toit panoramique, porte droite panoramique et porte gauche 1/2 – 2/3.\n* Éclairage LED.\n* Tapis de sol, housse de siège et soufflette en cabine."
-  },
-  {
-    "slug": "fendt-fendt-824-2013",
-    "reference": "Fendt - Fendt 824 - 2013",
-    "brand": "Fendt",
-    "model": "Fendt 824",
-    "year": 2013,
-    "hours": 5700,
-    "power": 240,
-    "price": 83000,
-    "type": "Tractor",
-    "tagline": "Recent major oil changes performed.",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg"
-    ],
-    "features": [
-      "Recent major oil changes performed.",
-      "Four new tires: 650/85R38 front, 600/70R30 rear.",
-      "Tractor very clean condition.",
-      "TBE (technical data sheet) included.",
-      "Weight and three-point hitch not shown; other weight available."
-    ],
-    "notes_full": "Vends fendt 824\nAnnée 2013\n5700hrs\nLes grosses vidanges viennent d’être faites.\n4 pneus neufs en 650/85r38 et 600/70r30.\nTracteur très propre.\nTBE.\nMASSE Et 3 points sur les photos non incluse - mais autre masse disponible"
-  },
-  {
-    "slug": "john-deere-6145r-2019",
-    "reference": "John Deere - 6145R - 2019",
-    "brand": "John Deere",
-    "model": "6145R",
-    "year": 2019,
-    "hours": 3500,
-    "power": 165,
-    "price": 77000,
-    "type": "Tractor",
-    "tagline": "Continuous variation transmission, 165 HP engine optimization",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg",
-      "photo-08.jpg",
-      "photo-09.jpg",
-      "photo-10.jpg",
-      "photo-11.jpg",
-      "photo-12.jpg"
-    ],
-    "features": [
-      "Continuous variation transmission, 165 HP engine optimization",
-      "Four-wheel drive, suspended cabin",
-      "GPS activated system installed",
-      "Front tyres 600/65R28 Michelin, 15% wear",
-      "Rear tyres 900/50R46 Michelin, 10% wear",
-      "Max speed 40 km/h",
-      "Additional narrow wheel set option available",
-      "Regular maintenance performed by dealer"
-    ],
-    "notes_full": "Tracteur agricole\nEtat : Occasion - très bon état\nRoues motrices : 4 RM\nBoîte de vitesses : variation continue. Optimisation moteur développement 165 ch\nDimension pneus avant : 600/65R28 Michelin\nUsure pneus avant : 15%\nDimension pneus arrière : 900/50R46 Michelin\nUsure pneus arrière : 10%\nVitesse maxi : 40 Km/h\nPremière main : Oui\nCabine suspendue\nActivation GPS Possibilité d'option un deuxième jeu de roue étroite\nDimension avant 320/85R36 Bkt 10% usure\nDimension pneu arrière 380/90R46 Bkt 10% usure\nENTRETIENT TOUJOUR EFFECTUE PAR LA Concession"
-  },
-  {
-    "slug": "new-holland-t7210-2014",
-    "reference": "New Holland - T7.210 - 2014",
-    "brand": "New Holland",
-    "model": "T7.210",
-    "year": 2014,
-    "hours": 4620,
-    "power": 165,
-    "price": 48000,
-    "type": "Tractor",
-    "tagline": "165 HP engine with 210 HP boost capability",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg",
-      "photo-08.jpg"
-    ],
-    "features": [
-      "165 HP engine with 210 HP boost capability",
-      "Front tires: Taurus 540/65/30, water‑ballasted, ~38 mm tread",
-      "Rear tires: Michelin multibib 650/65/42, 28‑30 mm tread",
-      "Power‑shift transmission 19/6, gearbox replaced under 500 hrs",
-      "AdBlue system installed",
-      "Suspended rear axle and front lifting device",
-      "Cabin suspended with opening roof and climate control"
-    ],
-    "notes_full": "New Holland t7210\nTBE\n29/12/2014\n4620hrs\n165 CV et 210 CV surpuissance\nArbre de pont ar gros diamètre et coulissant pour réglage voie.\nAd blue\nPdf 540-540eco-1000tr\n4 distributeur\nPont suspendu\nRelevage avant\nMasse 1100kg béton\nToit ouvrant\n\nCabine suspendue\nClim\nPneus av taurus 540/65/30 lestage a l'eau. 38mm de crampons environ\nPneus arr Michelin multibib 650/65/42 ; 28-30 mm de crampons\nBoite à vitesse power commande 19/6\nLa boîte de vitesse à été remplacée en échange standard lors de la garantie il y a même pas 500hrs en concession.\nModèle idem qu'un case puma 165\nVente cause arrêt d'activité .\nMatériel disponible"
-  },
-  {
-    "slug": "john-deere-6110-m-2018",
-    "reference": "John Deere - 6110 M - 2018",
-    "brand": "John Deere",
-    "model": "6110 M",
-    "year": 2018,
-    "hours": 6150,
-    "power": 110,
-    "price": 47000,
-    "type": "Tractor",
-    "tagline": "First owner, service up‑to‑date with complete logbook",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg"
-    ],
-    "features": [
-      "First owner, service up‑to‑date with complete logbook",
-      "New BKT Agrimax tyres front 420/70/28, rear 520/70/38",
-      "Pneumatic brakes installed",
-      "Suspended front axle",
-      "Three double‑acting hydraulic distributors, free return",
-      "Full rear hitch with oscillating bar, piton, wolf‑mouth",
-      "PowerQuad transmission",
-      "MX T410+ front loader with Pro‑Pilot joystick, fitted 2019"
-    ],
-    "notes_full": "Bonjour, je vend mon jd 6110m de 2018 avec 6150h.\nC'est une première main.\nL'entretien est à jour avec carnet.\nLes pneus sont neufs en bkt agrimax factor\n420/70/28 et 520/70/38\nLe tracteur est équipé des freins pneumatiques,\npont avant suspendu,\n3 distributeurs double effet et retour libre, attelage complet avec barre oscillante, piton et gueule de loup,\nclim,\nboîte powerquad,\nFAP vanne EGR et ad blue supprimé\nChargeur mx t410+ avec manette propilot monté en 2019."
-  },
-  {
-    "slug": "john-deere-6400-1996",
-    "reference": "John Deere - 6400 - 1996",
-    "brand": "John Deere",
-    "model": "6400",
-    "year": 1996,
-    "hours": 10000,
-    "power": 100,
-    "price": 16500,
-    "type": "Tractor",
-    "tagline": "Tractor with 100 hp engine",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg"
-    ],
-    "features": [
-      "Tractor with 100 hp engine"
-    ],
-    "notes_full": ""
-  },
-  {
-    "slug": "john-deere-864-2017",
-    "reference": "John Deere - 864 - 2017",
-    "brand": "John Deere",
-    "model": "864",
-    "year": 2017,
-    "hours": null,
-    "power": null,
-    "price": 13500,
-    "type": "Round Baller",
-    "tagline": "Round baler, model 864",
-    "photos": [
-      "photo-01.jpg",
-      "photo-02.jpg",
-      "photo-03.jpg",
-      "photo-04.jpg",
-      "photo-05.jpg",
-      "photo-06.jpg",
-      "photo-07.jpg",
-      "photo-08.jpg"
-    ],
-    "features": [
-      "Round baler, model 864",
-      "Located in Lavergne, France (postal code 47800)",
-      "22,000 operational cycles recorded"
-    ],
-    "notes_full": "22,000 bottes"
-  }
-];
-
-  function eur(n) { return n ? new Intl.NumberFormat("en-US", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n) : "On request"; }
-  function num(n) { return n ? new Intl.NumberFormat("en-US").format(n) : "—"; }
-
-  function brandClass(brand) {
-    const b = (brand || "").toLowerCase();
-    if (b.includes("john deere")) return "jd";
-    if (b.includes("fendt")) return "fendt";
-    if (b.includes("claas")) return "claas";
-    if (b.includes("case")) return "case";
-    if (b.includes("new holland")) return "nh";
-    return "";
-  }
-
-  function waLink(eq) {
-    const txt = `Hello Esteban, I'm interested in the ${eq.brand} ${eq.model} (${eq.year}). Could you send more info / photos?`;
-    return `https://wa.me/33769499010?text=${encodeURIComponent(txt)}`;
-  }
-
-  function photoUrl(eq, idx) {
-    if (eq.photos && eq.photos.length > idx) {
-      return `photos/${eq.slug}/${eq.photos[idx]}`;
-    }
-    return null;
-  }
-
-  function photoOrPlaceholder(eq, idx, isModal) {
-    const url = photoUrl(eq, idx);
-    if (url) return `<img src="${url}" alt="${eq.brand} ${eq.model}" loading="lazy">`;
-    if (isModal) return `<span>Photo ${idx + 1}</span>`;
-    return `<div class="card-photo-placeholder"><div class="card-photo-placeholder-icon">🚜</div>Photos coming soon</div>`;
-  }
-
-  function buildBrandFilters() {
-    const brands = [...new Set(STOCK.map(e => e.brand))].sort();
-    const filters = document.getElementById("filters");
-    brands.forEach(b => {
-      const btn = document.createElement("button");
-      btn.className = "filter-pill";
-      btn.dataset.brand = b;
-      btn.textContent = b;
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
-        btn.classList.add("active");
-        renderCards(b);
-      });
-      filters.insertBefore(btn, document.getElementById("results-count"));
-    });
-    document.querySelector(".filter-pill[data-brand='all']").addEventListener("click", () => {
-      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
-      document.querySelector(".filter-pill[data-brand='all']").classList.add("active");
-      renderCards("all");
-    });
-  }
-
-  function renderCards(filterBrand) {
-    const grid = document.getElementById("grid");
-    const items = filterBrand && filterBrand !== "all" ? STOCK.filter(e => e.brand === filterBrand) : STOCK;
-    document.getElementById("results-count").textContent = `${items.length} result${items.length !== 1 ? "s" : ""}`;
-    if (items.length === 0) {
-      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">No equipment in this category right now.</div>`;
-      return;
-    }
-    grid.innerHTML = items.map(eq => `
-      <div class="card">
-        <div class="card-photo">
-          ${photoOrPlaceholder(eq, 0, false)}
-          <div class="card-badge ${brandClass(eq.brand)}">${eq.brand}</div>
-          ${eq.photos && eq.photos.length > 0 ? `<div class="card-photo-count">📷 ${eq.photos.length}</div>` : ""}
-        </div>
-        <div class="card-body">
-          <div class="card-title">${eq.brand} ${eq.model}</div>
-          <div class="card-subtitle">${eq.year || ""}${eq.tagline ? " · " + eq.tagline : ""}</div>
-          <div class="card-specs">
-            <div class="card-spec"><div class="card-spec-value">${eq.year || "—"}</div><div class="card-spec-label">Year</div></div>
-            <div class="card-spec"><div class="card-spec-value">${num(eq.hours)} h</div><div class="card-spec-label">Hours</div></div>
-            <div class="card-spec"><div class="card-spec-value">${eq.power ? eq.power + " hp" : "—"}</div><div class="card-spec-label">Power</div></div>
-          </div>
-          <div class="card-price">${eur(eq.price)}</div>
-          <div class="card-price-tag">Asking price · ex-works France</div>
-          <div class="card-actions">
-            <button class="btn btn-primary" onclick="openModal('${eq.slug}')">Details</button>
-            <a class="btn btn-wa" href="${waLink(eq)}" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
-              Ask
-            </a>
-          </div>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  function openModal(slug) {
-    const eq = STOCK.find(e => e.slug === slug);
-    if (!eq) return;
-    const photoCount = Math.max((eq.photos || []).length, 4);
-    const photosHtml = Array.from({length: photoCount}).map((_, i) =>
-      `<div class="modal-photo">${photoOrPlaceholder(eq, i, true)}</div>`
-    ).join("");
-    const featuresHtml = (eq.features || []).map(f => `<li>${f}</li>`).join("") || "<li>Full specifications on request via WhatsApp.</li>";
-
-    document.getElementById("modal-content").innerHTML = `
-      <div class="modal-header">
-        <div>
-          <div class="modal-title">${eq.brand} ${eq.model}</div>
-          <div class="modal-subtitle">${eq.year || ""}${eq.tagline ? " · " + eq.tagline : ""}</div>
-        </div>
-        <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-photos">${photosHtml}</div>
-        <div class="modal-keyfacts">
-          <div class="modal-keyfact"><div class="modal-keyfact-label">Year</div><div class="modal-keyfact-value">${eq.year || "—"}</div></div>
-          <div class="modal-keyfact"><div class="modal-keyfact-label">Hours</div><div class="modal-keyfact-value">${num(eq.hours)} h</div></div>
-          <div class="modal-keyfact"><div class="modal-keyfact-label">Power</div><div class="modal-keyfact-value">${eq.power ? eq.power + " hp" : "—"}</div></div>
-          <div class="modal-keyfact"><div class="modal-keyfact-label">Price</div><div class="modal-keyfact-value price">${eur(eq.price)}</div></div>
-        </div>
-        <div class="modal-section-title">Highlights</div>
-        <div class="modal-features"><ul>${featuresHtml}</ul></div>
-        <div class="modal-actions">
-          <a class="btn btn-wa" href="${waLink(eq)}" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
-            Ask about this on WhatsApp
-          </a>
-          <a class="btn btn-primary" href="mailto:breizhagrimat@outlook.fr?subject=Enquiry: ${encodeURIComponent(eq.brand + ' ' + eq.model + ' (' + eq.year + ')')}">📧 Email enquiry</a>
-        </div>
-      </div>
-    `;
-    document.getElementById("modal").classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    document.getElementById("modal").classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
-
-  // Initial render
-  document.getElementById("stat-total").textContent = STOCK.length;
-  document.getElementById("stat-brands").textContent = new Set(STOCK.map(e => e.brand)).size;
-  buildBrandFilters();
-  renderCards("all");
-</script>
-
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="/i18n.js" defer></script>
+<script src="/scripts.js" defer></script>
 </body>
 </html>
