@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock — Breizh Agrimat | Used Agricultural Equipment Catalogue</title>
+<meta name="description" content="Browse our full catalogue of verified used tractors and agricultural equipment. Sourced across Europe, inspected, export-ready.">
+<meta property="og:title" content="Stock — Breizh Agrimat">
+<meta property="og:description" content="Verified used agricultural equipment. Pan-European sourcing. Export-ready.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="https://breizh-agrimat.com/stock/">
+<link rel="alternate" hreflang="fr" href="https://breizh-agrimat.com/stock/">
+<link rel="alternate" hreflang="de" href="https://breizh-agrimat.com/stock/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Breizh Agrimat home">
+    <div class="brand-mark" aria-hidden="true">BA</div>
+    <div class="brand-text">
+      <div class="brand-name">Breizh Agrimat</div>
+      <div class="brand-sub">Used Agricultural Equipment</div>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <div class="header-links">
+      <a href="/stock/" class="active" data-i18n="nav.stock">Stock</a>
+      <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+      <a href="/a-propos/" data-i18n="nav.about">About</a>
+      <a href="/contact/" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </nav>
+  <button class="menu-toggle" aria-label="Menu"><span></span></button>
+</header>
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="/stock/" data-i18n="nav.stock">Stock</a>
+  <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+  <a href="/a-propos/" data-i18n="nav.about">About</a>
+  <a href="/contact/" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="stock-hero">
+  <div class="container">
+    <h1 data-i18n="stock.title">All stock</h1>
+    <p data-i18n="stock.subtitle">Browse our full catalogue of verified agricultural equipment.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="container">
+    <div class="filter-bar">
+      <input type="search" class="filter-search" id="stock-search" placeholder="Search brand, model, year..." data-i18n-placeholder="stock.search">
+      <select class="filter-select" id="filter-brand">
+        <option value="all" data-i18n="stock.brand">All brands</option>
+      </select>
+      <select class="filter-select" id="filter-type">
+        <option value="all" data-i18n="stock.type">All types</option>
+      </select>
+      <select class="filter-sort" id="filter-sort">
+        <option value="price_desc" data-i18n="stock.sort.price_desc">Price: high to low</option>
+        <option value="price_asc" data-i18n="stock.sort.price_asc">Price: low to high</option>
+        <option value="year_desc" data-i18n="stock.sort.year_desc">Year: newest</option>
+        <option value="hours_asc" data-i18n="stock.sort.hours_asc">Hours: lowest</option>
+      </select>
+      <span class="results-count" id="results-count">0 results</span>
+    </div>
+  </div>
+</div>
+
+<!-- STOCK GRID -->
+<main class="section" style="padding-top:var(--space-6)">
+  <div class="container">
+    <div class="stock-grid" id="stock-grid"></div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal-content" role="dialog" aria-modal="true"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">BREIZH AGRIMAT</div>
+        <p class="brand-tagline" data-i18n="footer.tagline">Used farm equipment, sourced and verified across Europe.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.nav">Navigation</h4>
+        <a href="/stock/" data-i18n="nav.stock">Stock</a>
+        <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+        <a href="/a-propos/" data-i18n="nav.about">About</a>
+        <a href="/contact/" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="https://wa.me/33769499010" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:estebanm.0904@gmail.com">estebanm.0904@gmail.com</a>
+        <a href="tel:+33769499010">+33 7 69 49 90 10</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-i18n="footer.copy">&copy; 2026 Breizh Agrimat. Founded in Brittany, France.</div>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+</a>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/i18n.js" defer></script>
+<script src="/scripts.js" defer></script>
+
+<script>
+// === STOCK DATA — auto-generated from Notion via build.py ===
+const STOCK = [
+  {
+    "slug": "fendt-933-gene-7-2024",
+    "reference": "Fendt - 933 gene 7 - 2024",
+    "brand": "Fendt",
+    "model": "933 gene 7",
+    "year": 2024,
+    "hours": 650,
+    "power": 330,
+    "price": 278000,
+    "type": "Tractor",
+    "tagline": "- Five double‑acting rear hydraulic cylinders - Two front hydraulic cylinders - Three‑point hydraulic hitch front and rear - Front power tak",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg",
+      "photo-09.jpg",
+      "photo-10.jpg",
+      "photo-11.jpg",
+      "photo-12.jpg",
+      "photo-13.jpg",
+      "photo-14.jpg",
+      "photo-15.jpg",
+      "photo-16.jpg",
+      "photo-17.jpg"
+    ],
+    "features": [
+      "Fendt 933 gene 7 profis plus setting 2 d'octobre 2024 650 h",
+      "5 double effet arriere",
+      "2 avant",
+      "3 point hydraulique avant et arriere",
+      "Prise de force avant",
+      "Guidage rtk",
+      "Masse de roue 2fois 300kg",
+      "Pack infos loisir",
+      "Pneue avant 650/65/34 trelborg vf 5 % d'usure",
+      "Pneu arriere 710/75/42 trelborg vf 10% d'usure"
+    ],
+    "notes_full": "Fendt 933 gene 7 profis plus setting 2 d'octobre 2024 650 h\n5 double effet arriere\n2 avant\n3 point hydraulique avant et arriere\nPrise de force avant\nGuidage rtk\nMasse de roue 2fois 300kg\nPack infos loisir\nPneue avant 650/65/34 trelborg vf 5 % d'usure\nPneu arriere 710/75/42 trelborg vf 10% d'usure\nFull led\nBoite 60"
+  },
+  {
+    "slug": "john-deere-6r-195-2023",
+    "reference": "John Deere - 6R 195 - 2023",
+    "brand": "John Deere",
+    "model": "6R 195",
+    "year": 2023,
+    "hours": 467,
+    "power": 195,
+    "price": 160000,
+    "type": "Tractor",
+    "tagline": "- CommandPRO and CommandARM control systems installed - Front power take‑off and front lift - Air brakes, ultimate finish, 50 km/h top speed",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg"
+    ],
+    "features": [
+      "John Deere 6R 195",
+      "Command pro et command arm",
+      "Prise de force et relevage avant",
+      "Freinage air , finition ultimate , 50 km/h",
+      "Autotrac ready sans antenne",
+      "Toute options, rétroviseur électrique",
+      "K80 , 3em point hydraulique",
+      "Possibilité plaque setra"
+    ],
+    "notes_full": "John Deere 6R 195\nCommand pro et command arm\nPrise de force et relevage avant\nFreinage air , finition ultimate , 50 km/h\nAutotrac ready sans antenne\nToute options, rétroviseur électrique\nK80 , 3em point hydraulique\nPossibilité plaque setra"
+  },
+  {
+    "slug": "fendt-720-profil-2021",
+    "reference": "Fendt - 720 profil + - 2021",
+    "brand": "Fendt",
+    "model": "720 profil +",
+    "year": 2021,
+    "hours": 2800,
+    "power": null,
+    "price": 142000,
+    "type": "Tractor",
+    "tagline": "- 150 L/min pump capacity - 4 rear differential drives, 1 front differential drive - GPS Egnos navigation system - Front lift with effort co",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg"
+    ],
+    "features": [
+      "À vendre Fendt 720 profi + setting 2",
+      "Année 2021",
+      "Pompe 150l/min",
+      "4 DE arrière",
+      "1 DE avant",
+      "2800h",
+      "GPS Egnos",
+      "Relevage avant avec contrôle d’effort",
+      "Pneu arrière 650 75 38 neuf",
+      "Pneu avant 600 65 28 neuf"
+    ],
+    "notes_full": "À vendre Fendt 720 profi + setting 2\nAnnée 2021\nPompe 150l/min\n4 DE arrière\n1 DE avant\n2800h\nGPS Egnos\nRelevage avant avec contrôle d’effort\nPneu arrière 650 75 38 neuf\nPneu avant 600 65 28 neuf\n3 point hydraulique\n3e écrans\nSection contrôle\nRétroviseur électrique\nPlus d’informations sur demande"
+  },
+  {
+    "slug": "new-holland-t7245-2023",
+    "reference": "New Holland - t7.245 - 2023",
+    "brand": "New Holland",
+    "model": "t7.245",
+    "year": 2023,
+    "hours": 2000,
+    "power": 245,
+    "price": 128500,
+    "type": "Tractor",
+    "tagline": "- Autocommand vario transmission with 50 km/h top speed - Pneumatic brakes and brake on exhaust system installed - American rear axle with S",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg"
+    ],
+    "features": [
+      "Vend new Holland t7.245",
+      "Autocommand ( vario )",
+      "1700h evolutif",
+      "Vitre teintée arrière",
+      "Boîte 50km/h",
+      "Frein pneumatique",
+      "Pont américain",
+      "Attache scharmüller",
+      "Chape, piton , k80 fournis avec",
+      "4 double effet arrière"
+    ],
+    "notes_full": "Vend new Holland t7.245\nAutocommand ( vario )\n1700h evolutif\nVitre teintée arrière\nBoîte 50km/h\nFrein pneumatique\nPont américain\nAttache scharmüller\nChape, piton , k80 fournis avec\n4 double effet arrière\n2 double effet avant\nPlusieurs retour libres\nPneus Arrière 650\nPneus Avant 600\nPrédisposition gps\nFrein sur échappement\n\nFull options\nTracteur acheter neuf\nSur demande peut fournir la liste détaillé des options\n\nÉquipement supplémentaire :\n- prise 12v pour marche arrière ( éclairage feux de recul, bip etc )\n- écran caméra avec prise installer à l’extérieur\n- soufflette extérieur\n- soufflette intérieur\n- klaxon 31 song\n- 2 trompes hadley 95 cm\n- sifflet turc\n- poppy bleu\n- cb président\n- tablette et tapis fabrication artisanale"
+  },
+  {
+    "slug": "massey-ferguson-6s-155-dyna-vt-2024",
+    "reference": "Massey Ferguson - 6s 155 dyna VT - 2024",
+    "brand": "Massey Ferguson",
+    "model": "6s 155 dyna VT",
+    "year": 2024,
+    "hours": 787,
+    "power": 155,
+    "price": 115000,
+    "type": "Tractor",
+    "tagline": "- Maximum speed 50 km/h, exclusive configuration. - 5 rear electric distributors, 2 front, 1 lift, free return. - Closed center hydraulic ci",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg"
+    ],
+    "features": [
+      "6s 155 dyna VT exclusive 50 km/h",
+      "5 distributeurs electriques arrieres + 2 avant+ 1 pour relevage + retour libre",
+      "circuit centre fermé 190 l /min",
+      "relevage arrière 9t600 + 3ème point hydraulique",
+      "relevage avant 3t200",
+      "pont arrière avec arbre coulissant",
+      "pneus 460/85/r38 et 380/85/r28",
+      "datatronic 5",
+      "gps trimble rtk",
+      "pack led complet"
+    ],
+    "notes_full": "6s 155 dyna VT exclusive 50 km/h\n5 distributeurs electriques arrieres + 2 avant+ 1 pour relevage + retour libre\ncircuit centre fermé 190 l /min\nrelevage arrière 9t600 + 3ème point hydraulique\nrelevage avant 3t200\npont arrière avec arbre coulissant\npneus 460/85/r38 et 380/85/r28\ndatatronic 5\ngps trimble rtk\npack led complet\nsiège premium chauffant"
+  },
+  {
+    "slug": "john-deere-6195-r-2019",
+    "reference": "John Deere - 6195 R - 2019",
+    "brand": "John Deere",
+    "model": "6195 R",
+    "year": 2019,
+    "hours": 2600,
+    "power": null,
+    "price": 105000,
+    "type": "Tractor",
+    "tagline": "- Suspended front axle and suspended cabin - Hydraulic brakes - Automatic climate control - Four rear hydraulic ports and one front - Autotr",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg"
+    ],
+    "features": [
+      "Tracteur John Deere 6195 R avec 2600 heures",
+      "PDF 540E/1000/1000E",
+      "Pont avant suspendue et cabine suspendue",
+      "Boite autopwer 40KM/H",
+      "Frein hydraulique",
+      "Clim automatique",
+      "4 prises hydrauliques arrière et 1 avant",
+      "Tracteur autotrac avec activation guidage",
+      "Pneus Michelin avant et arrière 600/70R28 et 650/85R38",
+      "Usure des pneus avant et arrière environ 30%"
+    ],
+    "notes_full": "Tracteur John Deere 6195 R avec 2600 heures\nPDF 540E/1000/1000E\nPont avant suspendue et cabine suspendue\nBoite autopwer 40KM/H\nFrein hydraulique\nClim automatique\n4 prises hydrauliques arrière et 1 avant\nTracteur autotrac avec activation guidage\nPneus Michelin avant et arrière 600/70R28 et 650/85R38\nUsure des pneus avant et arrière environ 30%"
+  },
+  {
+    "slug": "john-deere-6215r-2020",
+    "reference": "John Deere - 6215r - 2020",
+    "brand": "John Deere",
+    "model": "6215r",
+    "year": 2020,
+    "hours": 4000,
+    "power": 215,
+    "price": 97000,
+    "type": "Tractor",
+    "tagline": "- Autopower Command Pro transmission - Integrated guidance system - Rear tyres: Michelin 710/70 R42 - Front tyres: Michelin 600/70 R28 - 215",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg"
+    ],
+    "features": [
+      "Vends John deere 6215r de 2020 avec 4000h boîte autopower command pro, guidage, pneumatiques arrières Michelin 710/70R42 avants Michelin 600/70R28"
+    ],
+    "notes_full": "Vends John deere 6215r de 2020 avec 4000h boîte autopower command pro, guidage, pneumatiques arrières Michelin 710/70R42 avants Michelin 600/70R28"
+  },
+  {
+    "slug": "fendt-724-profi-plus-2021",
+    "reference": "Fendt - 724 profi plus - 2021",
+    "brand": "Fendt",
+    "model": "724 profi plus",
+    "year": 2021,
+    "hours": 6500,
+    "power": 240,
+    "price": 91000,
+    "type": "Tractor",
+    "tagline": "- Dealer‑maintained service history - Four new tires installed - RTK GPS navigation system - Pneumatic brake system and cabin suspension wit",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg"
+    ],
+    "features": [
+      "Fendt 724 profi plus",
+      "Entretien suivi par le concessionnaire",
+      "4 pneus neufs",
+      "GPS RTK",
+      "Freinage pneumatique",
+      "Cabine suspendue pneumatique prise sur 3 points",
+      "Rétroviseurs électriques",
+      "Climatisation automatique",
+      "Attelage Scharmüller",
+      "5 distributeurs hydrauliques à l’arrière et 1 à l’avant avec retour libre"
+    ],
+    "notes_full": "Fendt 724 profi plus\nEntretien suivi par le concessionnaire\n4 pneus neufs\nGPS RTK\nFreinage pneumatique\nCabine suspendue pneumatique prise sur 3 points\nRétroviseurs électriques\nClimatisation automatique\nAttelage Scharmüller\n5 distributeurs hydrauliques à l’arrière et 1 à l’avant avec retour libre\nPrises LS, isobus\nEquipé d’un bâti chargeur Mailleux\nTrès bon état"
+  },
+  {
+    "slug": "claas-claas-arion-660-cmatic-2021",
+    "reference": "Claas - Claas arion 660 CMATIC - 2021",
+    "brand": "Claas",
+    "model": "Claas arion 660 CMATIC",
+    "year": 2021,
+    "hours": 3050,
+    "power": 200,
+    "price": 87000,
+    "type": "Tractor",
+    "tagline": "- Gearbox rated for 50 km/h top speed - Pneumatic brake system installed - Four-wheel drive (4 DE) - Front lift and power take‑off (PTO) - F",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg"
+    ],
+    "features": [
+      "Vend claas arion 660 cmatic",
+      "boite 50 km/h",
+      "3050 heures",
+      "freins pneumatiques",
+      "4 DE",
+      "relevage et prise de force avant",
+      "Pont Av suspendu",
+      "Bâti de chargeur mailleux"
+    ],
+    "notes_full": "Vend claas arion 660 cmatic\nboite 50 km/h\n3050 heures\nfreins pneumatiques\n4 DE\nrelevage et prise de force avant\nPont Av suspendu\nBâti de chargeur mailleux"
+  },
+  {
+    "slug": "john-deere-6155m-2021",
+    "reference": "John Deere - 6155M - 2021",
+    "brand": "John Deere",
+    "model": "6155M",
+    "year": 2021,
+    "hours": 2018,
+    "power": 150,
+    "price": 86500,
+    "type": "Tractor",
+    "tagline": "- Front lift mechanism - Front power take‑off - Rear tyres size 650, Michelin brand - Front tyres size 540, Michelin brand - Seller retiring",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg",
+      "photo-09.jpg",
+      "photo-10.jpg"
+    ],
+    "features": [
+      "vends tracteur John deere 6155 M",
+      "2018 heures",
+      "relevage avant",
+      "prise de force avant",
+      "pneu 650 arrière",
+      "pneu 540 avant de marque Michelin",
+      "cause retraite"
+    ],
+    "notes_full": "vends tracteur John deere 6155 M\n2018 heures\nrelevage avant\nprise de force avant\npneu 650 arrière\npneu 540 avant de marque Michelin\ncause retraite"
+  },
+  {
+    "slug": "claas-axion-810-2014",
+    "reference": "Claas - axion 810 - 2014",
+    "brand": "Claas",
+    "model": "axion 810",
+    "year": 2014,
+    "hours": 3900,
+    "power": 210,
+    "price": 85000,
+    "type": "Tractor",
+    "tagline": "- Suspended front axle - Front lifting mechanism installed - Claas S10 auto‑guidance system fitted - Three electric distributors present - L",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg"
+    ],
+    "features": [
+      "Axion 810",
+      "pont avant suspendu",
+      "relevage avant",
+      "auto guidage claas s10",
+      "3 distributeur électrique",
+      "pneu basse pression",
+      "cabine suspendu",
+      "Autoguidage",
+      "rien à signaler dessus état correct",
+      "vend car arrêt des cultures."
+    ],
+    "notes_full": "Axion 810\npont avant suspendu\nrelevage avant\nauto guidage claas s10\n3 distributeur électrique\npneu basse pression\ncabine suspendu\nAutoguidage\nrien à signaler dessus état correct\nvend car arrêt des cultures."
+  },
+  {
+    "slug": "john-deere-6130r-2022",
+    "reference": "John Deere - 6130R - 2022",
+    "brand": "John Deere",
+    "model": "6130R",
+    "year": 2022,
+    "hours": 3900,
+    "power": 130,
+    "price": 84500,
+    "type": "Tractor",
+    "tagline": "- Loader frame with 623R loader and cab shield - Original front lift with 7-point hitch, position sensor, remote height switch - 3,900 engin",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg"
+    ],
+    "features": [
+      "Révision à jour, entretenu par concessionnaire, en très bon état.",
+      "Équipements supplémentaires :",
+      "* Bâti de chargeur avec chargeur John Deere 623R et protège-calandre.",
+      "* Relevage avant d’origine avec prise 7 plots, capteur de position et commande de hauteur à distance par interrupteur.",
+      "Équipements du tracteur :",
+      "* 3 900 heures moteur ;",
+      "* CommandARM avec levier multifonction et distributeurs électriques (x3).",
+      "* CommandPRO avec boîte de vitesses 50 km/h et freinage pneumatique.",
+      "* Pneus Michelin : avant 480/65 R28 — arrière 600/65 R38.",
+      "* ISOBUS avec console Gen4 version 4200."
+    ],
+    "notes_full": "Révision à jour, entretenu par concessionnaire, en très bon état.\n\nÉquipements supplémentaires :\n* Bâti de chargeur avec chargeur John Deere 623R et protège-calandre.\n* Relevage avant d’origine avec prise 7 plots, capteur de position et commande de hauteur à distance par interrupteur.\n\nÉquipements du tracteur :\n* 3 900 heures moteur ; \n* CommandARM avec levier multifonction et distributeurs électriques (x3).\n* CommandPRO avec boîte de vitesses 50 km/h et freinage pneumatique.\n* Pneus Michelin : avant 480/65 R28 — arrière 600/65 R38.\n* ISOBUS avec console Gen4 version 4200.\n* Prédisposition arrière LS / pression et retour (x2).\n* Prise de force arrière 540 / 540E et 1 000 tr/min.\n* Toit panoramique, porte droite panoramique et porte gauche 1/2 – 2/3.\n* Éclairage LED.\n* Tapis de sol, housse de siège et soufflette en cabine."
+  },
+  {
+    "slug": "fendt-fendt-824-2013",
+    "reference": "Fendt - Fendt 824 - 2013",
+    "brand": "Fendt",
+    "model": "Fendt 824",
+    "year": 2013,
+    "hours": 5700,
+    "power": 240,
+    "price": 83000,
+    "type": "Tractor",
+    "tagline": "- Recent major oil changes performed. - Four new tires: 650/85R38 front, 600/70R30 rear. - Tractor very clean condition. - TBE (technical da",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg"
+    ],
+    "features": [
+      "Vends fendt 824",
+      "Année 2013",
+      "5700hrs",
+      "Les grosses vidanges viennent d’être faites.",
+      "4 pneus neufs en 650/85r38 et 600/70r30.",
+      "Tracteur très propre.",
+      "TBE.",
+      "MASSE Et 3 points sur les photos non incluse - mais autre masse disponible"
+    ],
+    "notes_full": "Vends fendt 824\nAnnée 2013\n5700hrs\nLes grosses vidanges viennent d’être faites.\n4 pneus neufs en 650/85r38 et 600/70r30.\nTracteur très propre.\nTBE.\nMASSE Et 3 points sur les photos non incluse - mais autre masse disponible"
+  },
+  {
+    "slug": "john-deere-6145r-2019",
+    "reference": "John Deere - 6145R - 2019",
+    "brand": "John Deere",
+    "model": "6145R",
+    "year": 2019,
+    "hours": 3500,
+    "power": 165,
+    "price": 77000,
+    "type": "Tractor",
+    "tagline": "- Continuous variation transmission, 165 HP engine optimization - Four-wheel drive, suspended cabin - GPS activated system installed - Front",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg",
+      "photo-09.jpg",
+      "photo-10.jpg",
+      "photo-11.jpg",
+      "photo-12.jpg"
+    ],
+    "features": [
+      "Tracteur agricole",
+      "Etat : Occasion - très bon état",
+      "Roues motrices : 4 RM",
+      "Boîte de vitesses : variation continue. Optimisation moteur développement 165 ch",
+      "Dimension pneus avant : 600/65R28 Michelin",
+      "Usure pneus avant : 15%",
+      "Dimension pneus arrière : 900/50R46 Michelin",
+      "Usure pneus arrière : 10%",
+      "Vitesse maxi : 40 Km/h",
+      "Première main : Oui"
+    ],
+    "notes_full": "Tracteur agricole\nEtat : Occasion - très bon état\nRoues motrices : 4 RM\nBoîte de vitesses : variation continue. Optimisation moteur développement 165 ch\nDimension pneus avant : 600/65R28 Michelin\nUsure pneus avant : 15%\nDimension pneus arrière : 900/50R46 Michelin\nUsure pneus arrière : 10%\nVitesse maxi : 40 Km/h\nPremière main : Oui\nCabine suspendue\nActivation GPS Possibilité d'option un deuxième jeu de roue étroite\nDimension avant 320/85R36 Bkt 10% usure\nDimension pneu arrière 380/90R46 Bkt 10% usure\nENTRETIENT TOUJOUR EFFECTUE PAR LA Concession"
+  },
+  {
+    "slug": "new-holland-t7210-2014",
+    "reference": "New Holland - T7.210 - 2014",
+    "brand": "New Holland",
+    "model": "T7.210",
+    "year": 2014,
+    "hours": 4620,
+    "power": 165,
+    "price": 48000,
+    "type": "Tractor",
+    "tagline": "- 165 HP engine with 210 HP boost capability - Front tires: Taurus 540/65/30, water‑ballasted, ~38 mm tread - Rear tires: Michelin multibib ",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg"
+    ],
+    "features": [
+      "New Holland t7210",
+      "TBE",
+      "29/12/2014",
+      "4620hrs",
+      "165 CV et 210 CV surpuissance",
+      "Arbre de pont ar gros diamètre et coulissant pour réglage voie.",
+      "Ad blue",
+      "Pdf 540-540eco-1000tr",
+      "4 distributeur",
+      "Pont suspendu"
+    ],
+    "notes_full": "New Holland t7210\nTBE\n29/12/2014\n4620hrs\n165 CV et 210 CV surpuissance\nArbre de pont ar gros diamètre et coulissant pour réglage voie.\nAd blue\nPdf 540-540eco-1000tr\n4 distributeur\nPont suspendu\nRelevage avant\nMasse 1100kg béton\nToit ouvrant\n\nCabine suspendue\nClim\nPneus av taurus 540/65/30 lestage a l'eau. 38mm de crampons environ\nPneus arr Michelin multibib 650/65/42 ; 28-30 mm de crampons\nBoite à vitesse power commande 19/6\nLa boîte de vitesse à été remplacée en échange standard lors de la garantie il y a même pas 500hrs en concession.\nModèle idem qu'un case puma 165\nVente cause arrêt d'activité .\nMatériel disponible"
+  },
+  {
+    "slug": "john-deere-6110-m-2018",
+    "reference": "John Deere - 6110 M - 2018",
+    "brand": "John Deere",
+    "model": "6110 M",
+    "year": 2018,
+    "hours": 6150,
+    "power": 110,
+    "price": 47000,
+    "type": "Tractor",
+    "tagline": "- First owner, service up‑to‑date with complete logbook - New BKT Agrimax tyres front 420/70/28, rear 520/70/38 - Pneumatic brakes installed",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg"
+    ],
+    "features": [
+      "C'est une première main.",
+      "L'entretien est à jour avec carnet.",
+      "Les pneus sont neufs en bkt agrimax factor",
+      "420/70/28 et 520/70/38",
+      "Le tracteur est équipé des freins pneumatiques,",
+      "pont avant suspendu,",
+      "3 distributeurs double effet et retour libre, attelage complet avec barre oscillante, piton et gueule de loup,",
+      "clim,",
+      "boîte powerquad,",
+      "FAP vanne EGR et ad blue supprimé"
+    ],
+    "notes_full": "Bonjour, je vend mon jd 6110m de 2018 avec 6150h.\nC'est une première main.\nL'entretien est à jour avec carnet.\nLes pneus sont neufs en bkt agrimax factor\n420/70/28 et 520/70/38\nLe tracteur est équipé des freins pneumatiques,\npont avant suspendu,\n3 distributeurs double effet et retour libre, attelage complet avec barre oscillante, piton et gueule de loup,\nclim,\nboîte powerquad,\nFAP vanne EGR et ad blue supprimé\nChargeur mx t410+ avec manette propilot monté en 2019."
+  },
+  {
+    "slug": "john-deere-6400-1996",
+    "reference": "John Deere - 6400 - 1996",
+    "brand": "John Deere",
+    "model": "6400",
+    "year": 1996,
+    "hours": 10000,
+    "power": 100,
+    "price": 16500,
+    "type": "Tractor",
+    "tagline": "- Tractor with 100 hp engine",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg"
+    ],
+    "features": [],
+    "notes_full": ""
+  },
+  {
+    "slug": "john-deere-864-2017",
+    "reference": "John Deere - 864 - 2017",
+    "brand": "John Deere",
+    "model": "864",
+    "year": 2017,
+    "hours": null,
+    "power": null,
+    "price": 13500,
+    "type": "Round Baller",
+    "tagline": "- Round baler, model 864 - Located in Lavergne, France (postal code 47800) - 22,000 operational cycles recorded",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg"
+    ],
+    "features": [
+      "22,000 bottes"
+    ],
+    "notes_full": "22,000 bottes"
+  }
+][];
+
+// --- State ---
+let currentSearch = '';
+let currentBrand = 'all';
+let currentType = 'all';
+let currentSort = 'price_desc';
+let galleryIndex = 0;
+let galleryEquipment = null;
+
+// --- Utilities (local to stock page) ---
+function photoUrl(eq, idx) {
+  if (eq.photos && eq.photos.length > idx) return '/photos/' + eq.slug + '/' + eq.photos[idx];
+  return null;
+}
+
+// --- Build filter options ---
+function buildFilters() {
+  const brands = [...new Set(STOCK.map(e => e.brand))].sort();
+  const types = [...new Set(STOCK.map(e => e.type))].sort();
+
+  const brandSelect = document.getElementById('filter-brand');
+  brands.forEach(b => {
+    const opt = document.createElement('option');
+    opt.value = b; opt.textContent = b;
+    brandSelect.appendChild(opt);
+  });
+
+  const typeSelect = document.getElementById('filter-type');
+  types.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t; opt.textContent = t;
+    typeSelect.appendChild(opt);
+  });
+
+  brandSelect.addEventListener('change', () => { currentBrand = brandSelect.value; renderCards(); });
+  typeSelect.addEventListener('change', () => { currentType = typeSelect.value; renderCards(); });
+  document.getElementById('filter-sort').addEventListener('change', e => { currentSort = e.target.value; renderCards(); });
+
+  let searchTimeout;
+  document.getElementById('stock-search').addEventListener('input', e => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => { currentSearch = e.target.value.toLowerCase().trim(); renderCards(); }, 200);
+  });
+}
+
+// --- Filter & sort ---
+function getFiltered() {
+  let items = STOCK.filter(e => {
+    if (currentBrand !== 'all' && e.brand !== currentBrand) return false;
+    if (currentType !== 'all' && e.type !== currentType) return false;
+    if (currentSearch) {
+      const hay = (e.brand + ' ' + e.model + ' ' + (e.year || '') + ' ' + (e.tagline || '') + ' ' + (e.type || '')).toLowerCase();
+      if (!hay.includes(currentSearch)) return false;
+    }
+    return true;
+  });
+
+  switch (currentSort) {
+    case 'price_asc': items.sort((a, b) => (a.price || 0) - (b.price || 0)); break;
+    case 'price_desc': items.sort((a, b) => (b.price || 0) - (a.price || 0)); break;
+    case 'year_desc': items.sort((a, b) => (b.year || 0) - (a.year || 0)); break;
+    case 'hours_asc': items.sort((a, b) => (a.hours || 99999) - (b.hours || 99999)); break;
+  }
+  return items;
+}
+
+// --- Render cards ---
+function renderCards() {
+  const grid = document.getElementById('stock-grid');
+  const items = getFiltered();
+  const resultWord = typeof I18N !== 'undefined'
+    ? (items.length === 1 ? I18N.t('stock.result') : I18N.t('stock.results'))
+    : (items.length === 1 ? 'result' : 'results');
+  document.getElementById('results-count').textContent = items.length + ' ' + resultWord;
+
+  if (!items.length) {
+    grid.innerHTML = '<div class="stock-empty"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="stock.empty">No equipment matches your search.</p></div>';
+    if (typeof I18N !== 'undefined') I18N.apply();
+    return;
+  }
+
+  grid.innerHTML = items.map(eq => {
+    const src = photoUrl(eq, 0);
+    const img = src
+      ? '<img src="' + src + '" alt="' + eq.brand + ' ' + eq.model + ' ' + (eq.year || '') + '" loading="lazy" decoding="async">'
+      : '<div class="eq-card-img-empty"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
+    const pc = (eq.photos || []).length;
+    const availText = typeof I18N !== 'undefined' ? I18N.t('stock.available') : 'Available';
+    const yearText = typeof I18N !== 'undefined' ? I18N.t('stock.year') : 'Year';
+    const hoursText = typeof I18N !== 'undefined' ? I18N.t('stock.hours') : 'Hours';
+    const powerText = typeof I18N !== 'undefined' ? I18N.t('stock.power') : 'Power';
+    const exworksText = typeof I18N !== 'undefined' ? I18N.t('stock.exworks') : 'Ex-works';
+    const detailsText = typeof I18N !== 'undefined' ? I18N.t('stock.details') : 'Details';
+
+    return '<div class="eq-card">' +
+      '<div class="eq-card-img">' + img +
+        '<div class="eq-card-brand">' + eq.brand + '</div>' +
+        '<div class="eq-card-avail"><span class="eq-card-avail-dot"></span>' + availText + '</div>' +
+        (pc > 1 ? '<div class="eq-card-photos"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>' + pc + '</div>' : '') +
+      '</div>' +
+      '<div class="eq-card-body">' +
+        '<div class="eq-card-title">' + eq.brand + ' ' + eq.model + '</div>' +
+        '<div class="eq-card-tagline">' + (eq.year || '') + (eq.tagline ? ' &middot; ' + eq.tagline : '') + '</div>' +
+        '<div class="eq-card-specs">' +
+          '<div class="eq-card-spec"><div class="eq-card-spec-val">' + (eq.year || '—') + '</div><div class="eq-card-spec-lbl">' + yearText + '</div></div>' +
+          '<div class="eq-card-spec"><div class="eq-card-spec-val">' + num(eq.hours) + 'h</div><div class="eq-card-spec-lbl">' + hoursText + '</div></div>' +
+          '<div class="eq-card-spec"><div class="eq-card-spec-val">' + (eq.power ? eq.power + 'hp' : '—') + '</div><div class="eq-card-spec-lbl">' + powerText + '</div></div>' +
+        '</div>' +
+        '<div class="eq-card-bottom">' +
+          '<div><div class="eq-card-price">' + eur(eq.price) + '</div><div class="eq-card-price-note">' + exworksText + '</div></div>' +
+          '<div class="eq-card-btns">' +
+            '<button class="btn btn--primary btn--sm" onclick="openModal(\'' + eq.slug + '\')" aria-label="View ' + eq.brand + ' ' + eq.model + '">' + detailsText + '</button>' +
+            '<a class="btn btn--whatsapp btn--sm" href="' + waLink(eq) + '" target="_blank" rel="noopener" aria-label="WhatsApp about ' + eq.brand + ' ' + eq.model + '"><svg viewBox="0 0 24 24" style="width:15px;height:15px"><path d="' + WA_PATH + '"/></svg></a>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  // Stagger entrance
+  const cards = grid.querySelectorAll('.eq-card');
+  if (typeof IntersectionObserver !== 'undefined') {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, i * 40);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    cards.forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(24px)';
+      c.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+      obs.observe(c);
+    });
+  }
+}
+
+// --- Modal ---
+function openModal(slug) {
+  const eq = STOCK.find(e => e.slug === slug);
+  if (!eq) return;
+  galleryEquipment = eq;
+  galleryIndex = 0;
+  const photos = eq.photos || [];
+  const featHtml = (eq.features || []).map(f => '<li>' + f + '</li>').join('')
+    || '<li>' + (typeof I18N !== 'undefined' ? I18N.t('stock.specs.default') : 'Full specifications available on request.') + '</li>';
+  const thumbs = photos.map((p, i) =>
+    '<div class="gal-thumb' + (i === 0 ? ' active' : '') + '" onclick="goSlide(' + i + ')">' +
+    '<img src="/photos/' + eq.slug + '/' + p + '" alt="Photo ' + (i + 1) + '" loading="lazy" decoding="async"></div>'
+  ).join('');
+  const mainImg = photos.length
+    ? '<img src="/photos/' + eq.slug + '/' + photos[0] + '" alt="' + eq.brand + ' ' + eq.model + '" id="gal-img">'
+    : '<span class="no-photo">Photos available on request via WhatsApp</span>';
+  const nav = photos.length > 1
+    ? '<button class="gal-nav gal-prev" onclick="prevSlide()" aria-label="Previous photo"><svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg></button>' +
+      '<button class="gal-nav gal-next" onclick="nextSlide()" aria-label="Next photo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>' +
+      '<div class="gal-counter" id="gal-counter">1 / ' + photos.length + '</div>'
+    : '';
+  const highlightsLabel = typeof I18N !== 'undefined' ? I18N.t('stock.highlights') : 'Highlights';
+  const descLabel = typeof I18N !== 'undefined' ? I18N.t('stock.description') : 'Description';
+  const desc = eq.notes_full
+    ? '<div class="section-label">' + descLabel + '</div><div class="modal-desc">' + eq.notes_full + '</div>'
+    : '';
+  const waText = typeof I18N !== 'undefined' ? I18N.t('stock.ask.wa') : 'Ask on WhatsApp';
+  const emailText = typeof I18N !== 'undefined' ? I18N.t('stock.ask.email') : 'Email enquiry';
+  const yearLabel = typeof I18N !== 'undefined' ? I18N.t('stock.year') : 'Year';
+  const hoursLabel = typeof I18N !== 'undefined' ? I18N.t('stock.hours') : 'Hours';
+  const powerLabel = typeof I18N !== 'undefined' ? I18N.t('stock.power') : 'Power';
+  const priceLabel = typeof I18N !== 'undefined' ? I18N.t('stock.price') : 'Price';
+
+  document.getElementById('modal-content').innerHTML =
+    '<div class="modal-header">' +
+      '<div><h2>' + eq.brand + ' ' + eq.model + '</h2><p>' + (eq.year || '') + (eq.tagline ? ' &middot; ' + eq.tagline : '') + '</p></div>' +
+      '<button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>' +
+    '</div>' +
+    '<div class="modal-body">' +
+      '<div class="gallery"><div class="gallery-main" id="gal-main">' + mainImg + '</div>' + nav + '</div>' +
+      (photos.length > 1 ? '<div class="gal-thumbs" id="gal-thumbs">' + thumbs + '</div>' : '') +
+      '<div class="facts-grid">' +
+        '<div class="fact"><div class="fact-lbl">' + yearLabel + '</div><div class="fact-val">' + (eq.year || '—') + '</div></div>' +
+        '<div class="fact"><div class="fact-lbl">' + hoursLabel + '</div><div class="fact-val">' + num(eq.hours) + 'h</div></div>' +
+        '<div class="fact"><div class="fact-lbl">' + powerLabel + '</div><div class="fact-val">' + (eq.power ? eq.power + 'hp' : '—') + '</div></div>' +
+        '<div class="fact"><div class="fact-lbl">' + priceLabel + '</div><div class="fact-val brass">' + eur(eq.price) + '</div></div>' +
+      '</div>' +
+      '<div class="section-label">' + highlightsLabel + '</div>' +
+      '<div class="feature-list"><ul>' + featHtml + '</ul></div>' +
+      desc +
+      '<div class="modal-actions">' +
+        '<a class="btn btn--whatsapp" href="' + waLink(eq) + '" target="_blank" rel="noopener">' +
+          '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:currentColor"><path d="' + WA_PATH + '"/></svg>' + waText + '</a>' +
+        '<a class="btn btn--secondary" href="mailto:estebanm.0904@gmail.com?subject=' + encodeURIComponent('Enquiry: ' + eq.brand + ' ' + eq.model + ' (' + (eq.year || '') + ')') + '">' +
+          '<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>' + emailText + '</a>' +
+      '</div>' +
+    '</div>';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  galleryEquipment = null;
+}
+
+function goSlide(i) {
+  if (!galleryEquipment || !galleryEquipment.photos) return;
+  const p = galleryEquipment.photos;
+  if (i < 0) i = p.length - 1;
+  if (i >= p.length) i = 0;
+  galleryIndex = i;
+  const img = document.getElementById('gal-img');
+  if (img) {
+    img.style.opacity = '0';
+    setTimeout(() => { img.src = '/photos/' + galleryEquipment.slug + '/' + p[i]; img.style.opacity = '1'; }, 150);
+  }
+  const ct = document.getElementById('gal-counter');
+  if (ct) ct.textContent = (i + 1) + ' / ' + p.length;
+  document.querySelectorAll('.gal-thumb').forEach((t, j) => t.classList.toggle('active', j === i));
+}
+function nextSlide() { goSlide(galleryIndex + 1); }
+function prevSlide() { goSlide(galleryIndex - 1); }
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (galleryEquipment) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  }
+});
+
+// Touch swipe
+let touchStartX = 0;
+document.addEventListener('touchstart', e => {
+  if (e.target.closest('.gallery')) touchStartX = e.touches[0].clientX;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+  if (!e.target.closest('.gallery') || !galleryEquipment) return;
+  const diff = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(diff) > 50) { diff > 0 ? prevSlide() : nextSlide(); }
+}, { passive: true });
+
+// --- Init ---
+document.addEventListener('DOMContentLoaded', () => {
+  buildFilters();
+  renderCards();
+});
+</script>
+</body>
+</html>

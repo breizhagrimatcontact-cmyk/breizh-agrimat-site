@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sell Your Equipment — Breizh Agrimat</title>
+<meta name="description" content="Sell your used agricultural equipment through Breizh Agrimat. Free valuation, pan-European buyer network, full service from photos to paperwork.">
+<meta property="og:title" content="Sell Your Equipment — Breizh Agrimat">
+<meta property="og:description" content="Free valuation. Pan-European buyer network. We handle everything.">
+<link rel="alternate" hreflang="en" href="https://breizh-agrimat.com/vendre/">
+<link rel="alternate" hreflang="fr" href="https://breizh-agrimat.com/vendre/">
+<link rel="alternate" hreflang="de" href="https://breizh-agrimat.com/vendre/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Breizh Agrimat home">
+    <div class="brand-mark" aria-hidden="true">BA</div>
+    <div class="brand-text">
+      <div class="brand-name">Breizh Agrimat</div>
+      <div class="brand-sub">Used Agricultural Equipment</div>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <div class="header-links">
+      <a href="/stock/" data-i18n="nav.stock">Stock</a>
+      <a href="/vendre/" class="active" data-i18n="nav.sell">Sell</a>
+      <a href="/a-propos/" data-i18n="nav.about">About</a>
+      <a href="/contact/" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </nav>
+  <button class="menu-toggle" aria-label="Menu"><span></span></button>
+</header>
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="/stock/" data-i18n="nav.stock">Stock</a>
+  <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+  <a href="/a-propos/" data-i18n="nav.about">About</a>
+  <a href="/contact/" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="sell-hero">
+  <div class="container">
+    <h1 data-i18n="sell.title">Sell your equipment</h1>
+    <p data-i18n="sell.subtitle">Get a free valuation. We handle the sale from A to Z.</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="section" style="padding-top:0">
+  <div class="container container--narrow">
+
+    <!-- Reassurance -->
+    <div class="reassurance">
+      <div class="reassurance-item reveal">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="sell.reassure.1">Free valuation, no commitment</span>
+      </div>
+      <div class="reassurance-item reveal reveal-d1">
+        <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="sell.reassure.2">Reply within 48h</span>
+      </div>
+      <div class="reassurance-item reveal reveal-d2">
+        <svg viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="sell.reassure.3">Confidentiality guaranteed</span>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="form-card reveal">
+      <form name="sell-equipment" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/vendre/merci/" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="sell-equipment">
+        <input type="text" name="bot-field" hidden>
+
+        <div class="form-grid">
+          <!-- Contact info -->
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.name">Full name <span class="required">*</span></label>
+            <input type="text" name="name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.email">Email <span class="required">*</span></label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.phone">Phone</label>
+            <input type="tel" name="phone" class="form-input">
+            <label class="form-checkbox">
+              <input type="checkbox" name="is_whatsapp" value="yes">
+              <span data-i18n="sell.field.whatsapp">This is my WhatsApp number</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.country">Country</label>
+            <select name="country" class="form-select">
+              <option value="">--</option>
+              <option value="FR">France</option>
+              <option value="BE">Belgium</option>
+              <option value="ES">Spain</option>
+              <option value="IT">Italy</option>
+              <option value="DE">Germany</option>
+              <option value="NL">Netherlands</option>
+              <option value="UK">United Kingdom</option>
+              <option value="PL">Poland</option>
+              <option value="RO">Romania</option>
+              <option value="BG">Bulgaria</option>
+              <option value="CZ">Czech Republic</option>
+              <option value="SK">Slovakia</option>
+              <option value="HU">Hungary</option>
+              <option value="AT">Austria</option>
+              <option value="GR">Greece</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </div>
+
+          <!-- Equipment info -->
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.eqtype">Equipment type</label>
+            <select name="equipment_type" class="form-select">
+              <option value="Tractor">Tractor</option>
+              <option value="Combine">Combine harvester</option>
+              <option value="Forage harvester">Forage harvester</option>
+              <option value="Implement">Implement</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.brand">Brand</label>
+            <input type="text" name="brand" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.model">Model</label>
+            <input type="text" name="model" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.year">Year</label>
+            <input type="number" name="year" class="form-input" min="1960" max="2026">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.hours">Hours</label>
+            <input type="number" name="hours" class="form-input" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="sell.field.price">Asking price (&euro;)</label>
+            <input type="number" name="asking_price" class="form-input" min="0">
+          </div>
+
+          <!-- Description -->
+          <div class="form-group form-group--full">
+            <label class="form-label" data-i18n="sell.field.desc">Description</label>
+            <textarea name="description" class="form-textarea" rows="5" data-i18n-placeholder="sell.field.desc.placeholder" placeholder="Describe your equipment: condition, options, service history..."></textarea>
+          </div>
+
+          <!-- Photos -->
+          <div class="form-group form-group--full">
+            <label class="form-label" data-i18n="sell.field.photos">Photos (max 10)</label>
+            <label class="form-file">
+              <input type="file" name="photos" accept="image/*" multiple>
+              <span class="form-file-label"><strong data-i18n="sell.field.photos.label">Click to upload or drag and drop</strong></span>
+            </label>
+          </div>
+
+          <!-- Contact preference -->
+          <div class="form-group form-group--full">
+            <label class="form-label" data-i18n="sell.field.contact">Preferred contact method</label>
+            <div class="form-radio-group">
+              <label class="form-radio"><input type="radio" name="contact_method" value="WhatsApp" checked> WhatsApp</label>
+              <label class="form-radio"><input type="radio" name="contact_method" value="Email"> Email</label>
+              <label class="form-radio"><input type="radio" name="contact_method" value="Phone"> Phone</label>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group form-group--full">
+            <button type="submit" class="btn btn--primary btn--lg btn--full" data-i18n="sell.submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">BREIZH AGRIMAT</div>
+        <p class="brand-tagline" data-i18n="footer.tagline">Used farm equipment, sourced and verified across Europe.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.nav">Navigation</h4>
+        <a href="/stock/" data-i18n="nav.stock">Stock</a>
+        <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+        <a href="/a-propos/" data-i18n="nav.about">About</a>
+        <a href="/contact/" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="https://wa.me/33769499010" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:estebanm.0904@gmail.com">estebanm.0904@gmail.com</a>
+        <a href="tel:+33769499010">+33 7 69 49 90 10</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-i18n="footer.copy">&copy; 2026 Breizh Agrimat. Founded in Brittany, France.</div>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/i18n.js" defer></script>
+<script src="/scripts.js" defer></script>
+</body>
+</html>
