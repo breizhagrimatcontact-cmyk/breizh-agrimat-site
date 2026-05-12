@@ -245,89 +245,154 @@
       </div>
       <a href="/stock/" class="btn btn--outline" data-i18n="featured.viewall">View all stock</a>
     </div>
-    <div class="featured-grid">
-      <div class="eq-card reveal">
-        <div class="eq-card-img">
-          <div class="eq-card-img-empty">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          </div>
-          <div class="eq-card-brand">John Deere</div>
-          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
-        </div>
-        <div class="eq-card-body">
-          <div class="eq-card-title">John Deere 6130M</div>
-          <div class="eq-card-tagline">Premium condition, full service history</div>
-          <div class="eq-card-specs">
-            <div class="eq-card-spec"><div class="eq-card-spec-val">2019</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
-            <div class="eq-card-spec"><div class="eq-card-spec-val">3,200h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
-            <div class="eq-card-spec"><div class="eq-card-spec-val">130hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
-          </div>
-          <div class="eq-card-bottom">
-            <div>
-              <div class="eq-card-price">&euro;52,000</div>
-              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
-            </div>
-            <div class="eq-card-btns">
-              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="eq-card reveal reveal-d1">
-        <div class="eq-card-img">
-          <div class="eq-card-img-empty">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          </div>
-          <div class="eq-card-brand">Fendt</div>
-          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
-        </div>
-        <div class="eq-card-body">
-          <div class="eq-card-title">Fendt 720 Profi+</div>
-          <div class="eq-card-tagline">Vario transmission, front loader ready</div>
-          <div class="eq-card-specs">
-            <div class="eq-card-spec"><div class="eq-card-spec-val">2018</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
-            <div class="eq-card-spec"><div class="eq-card-spec-val">4,100h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
-            <div class="eq-card-spec"><div class="eq-card-spec-val">209hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
-          </div>
-          <div class="eq-card-bottom">
-            <div>
-              <div class="eq-card-price">&euro;78,000</div>
-              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
-            </div>
-            <div class="eq-card-btns">
-              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="eq-card reveal reveal-d2">
-        <div class="eq-card-img">
-          <div class="eq-card-img-empty">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          </div>
-          <div class="eq-card-brand">Claas</div>
-          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
-        </div>
-        <div class="eq-card-body">
-          <div class="eq-card-title">Claas Arion 640</div>
-          <div class="eq-card-tagline">CEBIS, 50km/h, air suspension</div>
-          <div class="eq-card-specs">
-            <div class="eq-card-spec"><div class="eq-card-spec-val">2017</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
-            <div class="eq-card-spec"><div class="eq-card-spec-val">5,800h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
-            <div class="eq-card-spec"><div class="eq-card-spec-val">155hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
-          </div>
-          <div class="eq-card-bottom">
-            <div>
-              <div class="eq-card-price">&euro;45,000</div>
-              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
-            </div>
-            <div class="eq-card-btns">
-              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="featured-grid" id="featured-grid"></div>
+    <script>
+    const FEATURED = [
+  {
+    "slug": "fendt-933-gene-7-2024",
+    "reference": "Fendt - 933 gene 7 - 2024",
+    "brand": "Fendt",
+    "model": "933 gene 7",
+    "year": 2024,
+    "hours": 650,
+    "power": 330,
+    "price": 278000,
+    "type": "Tractor",
+    "tagline": "- Five double‑acting rear hydraulic cylinders - Two front hydraulic cylinders - Three‑point hydraulic hitch front and rear - Front power tak",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg",
+      "photo-09.jpg",
+      "photo-10.jpg",
+      "photo-11.jpg",
+      "photo-12.jpg",
+      "photo-13.jpg",
+      "photo-14.jpg",
+      "photo-15.jpg",
+      "photo-16.jpg",
+      "photo-17.jpg"
+    ],
+    "features": [
+      "Fendt 933 gene 7 profis plus setting 2 d'octobre 2024 650 h",
+      "5 double effet arriere",
+      "2 avant",
+      "3 point hydraulique avant et arriere",
+      "Prise de force avant",
+      "Guidage rtk",
+      "Masse de roue 2fois 300kg",
+      "Pack infos loisir",
+      "Pneue avant 650/65/34 trelborg vf 5 % d'usure",
+      "Pneu arriere 710/75/42 trelborg vf 10% d'usure"
+    ],
+    "notes_full": "Fendt 933 gene 7 profis plus setting 2 d'octobre 2024 650 h\n5 double effet arriere\n2 avant\n3 point hydraulique avant et arriere\nPrise de force avant\nGuidage rtk\nMasse de roue 2fois 300kg\nPack infos loisir\nPneue avant 650/65/34 trelborg vf 5 % d'usure\nPneu arriere 710/75/42 trelborg vf 10% d'usure\nFull led\nBoite 60"
+  },
+  {
+    "slug": "john-deere-6r-195-2023",
+    "reference": "John Deere - 6R 195 - 2023",
+    "brand": "John Deere",
+    "model": "6R 195",
+    "year": 2023,
+    "hours": 467,
+    "power": 195,
+    "price": 160000,
+    "type": "Tractor",
+    "tagline": "- CommandPRO and CommandARM control systems installed - Front power take‑off and front lift - Air brakes, ultimate finish, 50 km/h top speed",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg"
+    ],
+    "features": [
+      "John Deere 6R 195",
+      "Command pro et command arm",
+      "Prise de force et relevage avant",
+      "Freinage air , finition ultimate , 50 km/h",
+      "Autotrac ready sans antenne",
+      "Toute options, rétroviseur électrique",
+      "K80 , 3em point hydraulique",
+      "Possibilité plaque setra"
+    ],
+    "notes_full": "John Deere 6R 195\nCommand pro et command arm\nPrise de force et relevage avant\nFreinage air , finition ultimate , 50 km/h\nAutotrac ready sans antenne\nToute options, rétroviseur électrique\nK80 , 3em point hydraulique\nPossibilité plaque setra"
+  },
+  {
+    "slug": "fendt-720-profil-2021",
+    "reference": "Fendt - 720 profil + - 2021",
+    "brand": "Fendt",
+    "model": "720 profil +",
+    "year": 2021,
+    "hours": 2800,
+    "power": null,
+    "price": 142000,
+    "type": "Tractor",
+    "tagline": "- 150 L/min pump capacity - 4 rear differential drives, 1 front differential drive - GPS Egnos navigation system - Front lift with effort co",
+    "photos": [
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg"
+    ],
+    "features": [
+      "À vendre Fendt 720 profi + setting 2",
+      "Année 2021",
+      "Pompe 150l/min",
+      "4 DE arrière",
+      "1 DE avant",
+      "2800h",
+      "GPS Egnos",
+      "Relevage avant avec contrôle d’effort",
+      "Pneu arrière 650 75 38 neuf",
+      "Pneu avant 600 65 28 neuf"
+    ],
+    "notes_full": "À vendre Fendt 720 profi + setting 2\nAnnée 2021\nPompe 150l/min\n4 DE arrière\n1 DE avant\n2800h\nGPS Egnos\nRelevage avant avec contrôle d’effort\nPneu arrière 650 75 38 neuf\nPneu avant 600 65 28 neuf\n3 point hydraulique\n3e écrans\nSection contrôle\nRétroviseur électrique\nPlus d’informations sur demande"
+  }
+];
+    document.addEventListener('DOMContentLoaded', function() {
+      var grid = document.getElementById('featured-grid');
+      if (!FEATURED || !FEATURED.length) return;
+      var delays = ['', ' reveal-d1', ' reveal-d2'];
+      grid.innerHTML = FEATURED.map(function(eq, i) {
+        var src = eq.photos && eq.photos.length ? '/photos/' + eq.slug + '/' + eq.photos[0] : '';
+        var img = src
+          ? '<img src="' + src + '" alt="' + eq.brand + ' ' + eq.model + ' ' + (eq.year || '') + '" loading="lazy" decoding="async">'
+          : '<div class="eq-card-img-empty"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
+        var availText = typeof I18N !== 'undefined' ? I18N.t('stock.available') : 'Available';
+        var yearText = typeof I18N !== 'undefined' ? I18N.t('stock.year') : 'Year';
+        var hoursText = typeof I18N !== 'undefined' ? I18N.t('stock.hours') : 'Hours';
+        var powerText = typeof I18N !== 'undefined' ? I18N.t('stock.power') : 'Power';
+        var exworksText = typeof I18N !== 'undefined' ? I18N.t('stock.exworks') : 'Ex-works';
+        var detailsText = typeof I18N !== 'undefined' ? I18N.t('stock.details') : 'Details';
+        return '<div class="eq-card reveal' + (delays[i] || '') + '">' +
+          '<div class="eq-card-img">' + img +
+            '<div class="eq-card-brand">' + eq.brand + '</div>' +
+            '<div class="eq-card-avail"><span class="eq-card-avail-dot"></span>' + availText + '</div>' +
+          '</div>' +
+          '<div class="eq-card-body">' +
+            '<div class="eq-card-title">' + eq.brand + ' ' + eq.model + '</div>' +
+            '<div class="eq-card-tagline">' + (eq.year || '') + (eq.tagline ? ' &middot; ' + eq.tagline : '') + '</div>' +
+            '<div class="eq-card-specs">' +
+              '<div class="eq-card-spec"><div class="eq-card-spec-val">' + (eq.year || '—') + '</div><div class="eq-card-spec-lbl">' + yearText + '</div></div>' +
+              '<div class="eq-card-spec"><div class="eq-card-spec-val">' + num(eq.hours) + 'h</div><div class="eq-card-spec-lbl">' + hoursText + '</div></div>' +
+              '<div class="eq-card-spec"><div class="eq-card-spec-val">' + (eq.power ? eq.power + 'hp' : '—') + '</div><div class="eq-card-spec-lbl">' + powerText + '</div></div>' +
+            '</div>' +
+            '<div class="eq-card-bottom">' +
+              '<div><div class="eq-card-price">' + eur(eq.price) + '</div><div class="eq-card-price-note">' + exworksText + '</div></div>' +
+              '<div class="eq-card-btns">' +
+                '<a href="/stock/" class="btn btn--primary btn--sm">' + detailsText + '</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+      if (typeof initReveal === 'function') initReveal();
+    });
+    </script>
   </div>
 </section>
 
