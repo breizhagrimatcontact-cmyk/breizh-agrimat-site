@@ -279,6 +279,17 @@ def main():
     # 5. Copy static files (home, CSS, JS, other pages)
     copy_static_files()
 
+    # 5b. Inject featured stock into home page
+    featured = equipment[:3]
+    home_path = OUTPUT_DIR / "index.html"
+    if home_path.exists():
+        home_html = home_path.read_text(encoding="utf-8")
+        if "/*INJECT_FEATURED*/" in home_html:
+            featured_json = json.dumps(featured, ensure_ascii=False, indent=2)
+            home_html = home_html.replace("/*INJECT_FEATURED*/", featured_json)
+            home_path.write_text(home_html, encoding="utf-8")
+            print(f"  Injected {len(featured)} featured items into index.html")
+
     # 6. Generate stock page with injected data
     stock_html = generate_stock_page(equipment)
     stock_output = OUTPUT_DIR / "stock" / "index.html"
