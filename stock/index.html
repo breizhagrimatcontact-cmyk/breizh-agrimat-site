@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock — Breizh Agrimat | Used Agricultural Equipment Catalogue</title>
+<meta name="description" content="Browse our full catalogue of verified used tractors and agricultural equipment. Sourced across Europe, inspected, export-ready.">
+<meta property="og:title" content="Stock — Breizh Agrimat">
+<meta property="og:description" content="Verified used agricultural equipment. Pan-European sourcing. Export-ready.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="https://breizh-agrimat.com/stock/">
+<link rel="alternate" hreflang="fr" href="https://breizh-agrimat.com/stock/">
+<link rel="alternate" hreflang="de" href="https://breizh-agrimat.com/stock/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Breizh Agrimat home">
+    <div class="brand-mark" aria-hidden="true">BA</div>
+    <div class="brand-text">
+      <div class="brand-name">Breizh Agrimat</div>
+      <div class="brand-sub">Used Agricultural Equipment</div>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <div class="header-links">
+      <a href="/stock/" class="active" data-i18n="nav.stock">Stock</a>
+      <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+      <a href="/a-propos/" data-i18n="nav.about">About</a>
+      <a href="/contact/" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </nav>
+  <button class="menu-toggle" aria-label="Menu"><span></span></button>
+</header>
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="/stock/" data-i18n="nav.stock">Stock</a>
+  <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+  <a href="/a-propos/" data-i18n="nav.about">About</a>
+  <a href="/contact/" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="stock-hero">
+  <div class="container">
+    <h1 data-i18n="stock.title">All stock</h1>
+    <p data-i18n="stock.subtitle">Browse our full catalogue of verified agricultural equipment.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="container">
+    <div class="filter-bar">
+      <input type="search" class="filter-search" id="stock-search" placeholder="Search brand, model, year..." data-i18n-placeholder="stock.search">
+      <select class="filter-select" id="filter-brand">
+        <option value="all" data-i18n="stock.brand">All brands</option>
+      </select>
+      <select class="filter-select" id="filter-type">
+        <option value="all" data-i18n="stock.type">All types</option>
+      </select>
+      <select class="filter-sort" id="filter-sort">
+        <option value="price_desc" data-i18n="stock.sort.price_desc">Price: high to low</option>
+        <option value="price_asc" data-i18n="stock.sort.price_asc">Price: low to high</option>
+        <option value="year_desc" data-i18n="stock.sort.year_desc">Year: newest</option>
+        <option value="hours_asc" data-i18n="stock.sort.hours_asc">Hours: lowest</option>
+      </select>
+      <span class="results-count" id="results-count">0 results</span>
+    </div>
+  </div>
+</div>
+
+<!-- STOCK GRID -->
+<main class="section" style="padding-top:var(--space-6)">
+  <div class="container">
+    <div class="stock-grid" id="stock-grid"></div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal-content" role="dialog" aria-modal="true"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">BREIZH AGRIMAT</div>
+        <p class="brand-tagline" data-i18n="footer.tagline">Used farm equipment, sourced and verified across Europe.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.nav">Navigation</h4>
+        <a href="/stock/" data-i18n="nav.stock">Stock</a>
+        <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+        <a href="/a-propos/" data-i18n="nav.about">About</a>
+        <a href="/contact/" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="https://wa.me/33769499010" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:estebanm.0904@gmail.com">estebanm.0904@gmail.com</a>
+        <a href="tel:+33769499010">+33 7 69 49 90 10</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-i18n="footer.copy">&copy; 2026 Breizh Agrimat. Founded in Brittany, France.</div>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+</a>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/i18n.js" defer></script>
+<script src="/scripts.js" defer></script>
+
+<script>
+// === STOCK DATA — auto-generated from Notion via build.py ===
+const STOCK = /*INJECT_STOCK*/[];
+
+// --- State ---
+let currentSearch = '';
+let currentBrand = 'all';
+let currentType = 'all';
+let currentSort = 'price_desc';
+let galleryIndex = 0;
+let galleryEquipment = null;
+
+// --- Utilities (local to stock page) ---
+function photoUrl(eq, idx) {
+  if (eq.photos && eq.photos.length > idx) return '/photos/' + eq.slug + '/' + eq.photos[idx];
+  return null;
+}
+
+// --- Build filter options ---
+function buildFilters() {
+  const brands = [...new Set(STOCK.map(e => e.brand))].sort();
+  const types = [...new Set(STOCK.map(e => e.type))].sort();
+
+  const brandSelect = document.getElementById('filter-brand');
+  brands.forEach(b => {
+    const opt = document.createElement('option');
+    opt.value = b; opt.textContent = b;
+    brandSelect.appendChild(opt);
+  });
+
+  const typeSelect = document.getElementById('filter-type');
+  types.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t; opt.textContent = t;
+    typeSelect.appendChild(opt);
+  });
+
+  brandSelect.addEventListener('change', () => { currentBrand = brandSelect.value; renderCards(); });
+  typeSelect.addEventListener('change', () => { currentType = typeSelect.value; renderCards(); });
+  document.getElementById('filter-sort').addEventListener('change', e => { currentSort = e.target.value; renderCards(); });
+
+  let searchTimeout;
+  document.getElementById('stock-search').addEventListener('input', e => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => { currentSearch = e.target.value.toLowerCase().trim(); renderCards(); }, 200);
+  });
+}
+
+// --- Filter & sort ---
+function getFiltered() {
+  let items = STOCK.filter(e => {
+    if (currentBrand !== 'all' && e.brand !== currentBrand) return false;
+    if (currentType !== 'all' && e.type !== currentType) return false;
+    if (currentSearch) {
+      const hay = (e.brand + ' ' + e.model + ' ' + (e.year || '') + ' ' + (e.tagline || '') + ' ' + (e.type || '')).toLowerCase();
+      if (!hay.includes(currentSearch)) return false;
+    }
+    return true;
+  });
+
+  switch (currentSort) {
+    case 'price_asc': items.sort((a, b) => (a.price || 0) - (b.price || 0)); break;
+    case 'price_desc': items.sort((a, b) => (b.price || 0) - (a.price || 0)); break;
+    case 'year_desc': items.sort((a, b) => (b.year || 0) - (a.year || 0)); break;
+    case 'hours_asc': items.sort((a, b) => (a.hours || 99999) - (b.hours || 99999)); break;
+  }
+  return items;
+}
+
+// --- Render cards ---
+function renderCards() {
+  const grid = document.getElementById('stock-grid');
+  const items = getFiltered();
+  const resultWord = typeof I18N !== 'undefined'
+    ? (items.length === 1 ? I18N.t('stock.result') : I18N.t('stock.results'))
+    : (items.length === 1 ? 'result' : 'results');
+  document.getElementById('results-count').textContent = items.length + ' ' + resultWord;
+
+  if (!items.length) {
+    grid.innerHTML = '<div class="stock-empty"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="stock.empty">No equipment matches your search.</p></div>';
+    if (typeof I18N !== 'undefined') I18N.apply();
+    return;
+  }
+
+  grid.innerHTML = items.map(eq => {
+    const src = photoUrl(eq, 0);
+    const img = src
+      ? '<img src="' + src + '" alt="' + eq.brand + ' ' + eq.model + ' ' + (eq.year || '') + '" loading="lazy" decoding="async">'
+      : '<div class="eq-card-img-empty"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
+    const pc = (eq.photos || []).length;
+    const availText = typeof I18N !== 'undefined' ? I18N.t('stock.available') : 'Available';
+    const yearText = typeof I18N !== 'undefined' ? I18N.t('stock.year') : 'Year';
+    const hoursText = typeof I18N !== 'undefined' ? I18N.t('stock.hours') : 'Hours';
+    const powerText = typeof I18N !== 'undefined' ? I18N.t('stock.power') : 'Power';
+    const exworksText = typeof I18N !== 'undefined' ? I18N.t('stock.exworks') : 'Ex-works';
+    const detailsText = typeof I18N !== 'undefined' ? I18N.t('stock.details') : 'Details';
+
+    return '<div class="eq-card">' +
+      '<div class="eq-card-img">' + img +
+        '<div class="eq-card-brand">' + eq.brand + '</div>' +
+        '<div class="eq-card-avail"><span class="eq-card-avail-dot"></span>' + availText + '</div>' +
+        (pc > 1 ? '<div class="eq-card-photos"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>' + pc + '</div>' : '') +
+      '</div>' +
+      '<div class="eq-card-body">' +
+        '<div class="eq-card-title">' + eq.brand + ' ' + eq.model + '</div>' +
+        '<div class="eq-card-tagline">' + (eq.year || '') + (eq.tagline ? ' &middot; ' + eq.tagline : '') + '</div>' +
+        '<div class="eq-card-specs">' +
+          '<div class="eq-card-spec"><div class="eq-card-spec-val">' + (eq.year || '—') + '</div><div class="eq-card-spec-lbl">' + yearText + '</div></div>' +
+          '<div class="eq-card-spec"><div class="eq-card-spec-val">' + num(eq.hours) + 'h</div><div class="eq-card-spec-lbl">' + hoursText + '</div></div>' +
+          '<div class="eq-card-spec"><div class="eq-card-spec-val">' + (eq.power ? eq.power + 'hp' : '—') + '</div><div class="eq-card-spec-lbl">' + powerText + '</div></div>' +
+        '</div>' +
+        '<div class="eq-card-bottom">' +
+          '<div><div class="eq-card-price">' + eur(eq.price) + '</div><div class="eq-card-price-note">' + exworksText + '</div></div>' +
+          '<div class="eq-card-btns">' +
+            '<button class="btn btn--primary btn--sm" onclick="openModal(\'' + eq.slug + '\')" aria-label="View ' + eq.brand + ' ' + eq.model + '">' + detailsText + '</button>' +
+            '<a class="btn btn--whatsapp btn--sm" href="' + waLink(eq) + '" target="_blank" rel="noopener" aria-label="WhatsApp about ' + eq.brand + ' ' + eq.model + '"><svg viewBox="0 0 24 24" style="width:15px;height:15px"><path d="' + WA_PATH + '"/></svg></a>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  // Stagger entrance
+  const cards = grid.querySelectorAll('.eq-card');
+  if (typeof IntersectionObserver !== 'undefined') {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, i * 40);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    cards.forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(24px)';
+      c.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+      obs.observe(c);
+    });
+  }
+}
+
+// --- Modal ---
+function openModal(slug) {
+  const eq = STOCK.find(e => e.slug === slug);
+  if (!eq) return;
+  galleryEquipment = eq;
+  galleryIndex = 0;
+  const photos = eq.photos || [];
+  const featHtml = (eq.features || []).map(f => '<li>' + f + '</li>').join('')
+    || '<li>' + (typeof I18N !== 'undefined' ? I18N.t('stock.specs.default') : 'Full specifications available on request.') + '</li>';
+  const thumbs = photos.map((p, i) =>
+    '<div class="gal-thumb' + (i === 0 ? ' active' : '') + '" onclick="goSlide(' + i + ')">' +
+    '<img src="/photos/' + eq.slug + '/' + p + '" alt="Photo ' + (i + 1) + '" loading="lazy" decoding="async"></div>'
+  ).join('');
+  const mainImg = photos.length
+    ? '<img src="/photos/' + eq.slug + '/' + photos[0] + '" alt="' + eq.brand + ' ' + eq.model + '" id="gal-img">'
+    : '<span class="no-photo">Photos available on request via WhatsApp</span>';
+  const nav = photos.length > 1
+    ? '<button class="gal-nav gal-prev" onclick="prevSlide()" aria-label="Previous photo"><svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg></button>' +
+      '<button class="gal-nav gal-next" onclick="nextSlide()" aria-label="Next photo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>' +
+      '<div class="gal-counter" id="gal-counter">1 / ' + photos.length + '</div>'
+    : '';
+  const highlightsLabel = typeof I18N !== 'undefined' ? I18N.t('stock.highlights') : 'Highlights';
+  const descLabel = typeof I18N !== 'undefined' ? I18N.t('stock.description') : 'Description';
+  const desc = eq.notes_full
+    ? '<div class="section-label">' + descLabel + '</div><div class="modal-desc">' + eq.notes_full + '</div>'
+    : '';
+  const waText = typeof I18N !== 'undefined' ? I18N.t('stock.ask.wa') : 'Ask on WhatsApp';
+  const emailText = typeof I18N !== 'undefined' ? I18N.t('stock.ask.email') : 'Email enquiry';
+  const yearLabel = typeof I18N !== 'undefined' ? I18N.t('stock.year') : 'Year';
+  const hoursLabel = typeof I18N !== 'undefined' ? I18N.t('stock.hours') : 'Hours';
+  const powerLabel = typeof I18N !== 'undefined' ? I18N.t('stock.power') : 'Power';
+  const priceLabel = typeof I18N !== 'undefined' ? I18N.t('stock.price') : 'Price';
+
+  document.getElementById('modal-content').innerHTML =
+    '<div class="modal-header">' +
+      '<div><h2>' + eq.brand + ' ' + eq.model + '</h2><p>' + (eq.year || '') + (eq.tagline ? ' &middot; ' + eq.tagline : '') + '</p></div>' +
+      '<button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>' +
+    '</div>' +
+    '<div class="modal-body">' +
+      '<div class="gallery"><div class="gallery-main" id="gal-main">' + mainImg + '</div>' + nav + '</div>' +
+      (photos.length > 1 ? '<div class="gal-thumbs" id="gal-thumbs">' + thumbs + '</div>' : '') +
+      '<div class="facts-grid">' +
+        '<div class="fact"><div class="fact-lbl">' + yearLabel + '</div><div class="fact-val">' + (eq.year || '—') + '</div></div>' +
+        '<div class="fact"><div class="fact-lbl">' + hoursLabel + '</div><div class="fact-val">' + num(eq.hours) + 'h</div></div>' +
+        '<div class="fact"><div class="fact-lbl">' + powerLabel + '</div><div class="fact-val">' + (eq.power ? eq.power + 'hp' : '—') + '</div></div>' +
+        '<div class="fact"><div class="fact-lbl">' + priceLabel + '</div><div class="fact-val brass">' + eur(eq.price) + '</div></div>' +
+      '</div>' +
+      '<div class="section-label">' + highlightsLabel + '</div>' +
+      '<div class="feature-list"><ul>' + featHtml + '</ul></div>' +
+      desc +
+      '<div class="modal-actions">' +
+        '<a class="btn btn--whatsapp" href="' + waLink(eq) + '" target="_blank" rel="noopener">' +
+          '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:currentColor"><path d="' + WA_PATH + '"/></svg>' + waText + '</a>' +
+        '<a class="btn btn--secondary" href="mailto:estebanm.0904@gmail.com?subject=' + encodeURIComponent('Enquiry: ' + eq.brand + ' ' + eq.model + ' (' + (eq.year || '') + ')') + '">' +
+          '<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>' + emailText + '</a>' +
+      '</div>' +
+    '</div>';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  galleryEquipment = null;
+}
+
+function goSlide(i) {
+  if (!galleryEquipment || !galleryEquipment.photos) return;
+  const p = galleryEquipment.photos;
+  if (i < 0) i = p.length - 1;
+  if (i >= p.length) i = 0;
+  galleryIndex = i;
+  const img = document.getElementById('gal-img');
+  if (img) {
+    img.style.opacity = '0';
+    setTimeout(() => { img.src = '/photos/' + galleryEquipment.slug + '/' + p[i]; img.style.opacity = '1'; }, 150);
+  }
+  const ct = document.getElementById('gal-counter');
+  if (ct) ct.textContent = (i + 1) + ' / ' + p.length;
+  document.querySelectorAll('.gal-thumb').forEach((t, j) => t.classList.toggle('active', j === i));
+}
+function nextSlide() { goSlide(galleryIndex + 1); }
+function prevSlide() { goSlide(galleryIndex - 1); }
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (galleryEquipment) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  }
+});
+
+// Touch swipe
+let touchStartX = 0;
+document.addEventListener('touchstart', e => {
+  if (e.target.closest('.gallery')) touchStartX = e.touches[0].clientX;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+  if (!e.target.closest('.gallery') || !galleryEquipment) return;
+  const diff = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(diff) > 50) { diff > 0 ? prevSlide() : nextSlide(); }
+}, { passive: true });
+
+// --- Init ---
+document.addEventListener('DOMContentLoaded', () => {
+  buildFilters();
+  renderCards();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!--
+  BREIZH AGRIMAT V2 — Home
+  =========================
+  Design: Direction B "Swiss Industrial" — dark, editorial, brass/olive
+  Palette: #0A0A0A bg, #C8A55A brass, #5A7A4A olive, #EDEDED text
+  Typography: Instrument Serif (display) + Inter (body) + JetBrains Mono (data)
+  Libs: GSAP + ScrollTrigger, Lenis (smooth scroll), Splide (carousel)
+  i18n: data-i18n attributes, JS runtime replacement, EN/FR/DE
+  No build step. Static HTML. Netlify deploy.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breizh Agrimat — Used Farm Equipment, Sourced and Verified Across Europe</title>
+<meta name="description" content="Breizh Agrimat is an independent French broker for used agricultural equipment. Pan-European sourcing, independent inspection, verified sellers, end-to-end handling.">
+<meta property="og:title" content="Breizh Agrimat — Used Farm Equipment Across Europe">
+<meta property="og:description" content="Independent French broker. Pan-European sourcing. Verified equipment. Trilingual service EN/FR/DE.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://breizh-agrimat.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://breizh-agrimat.com/">
+<link rel="alternate" hreflang="fr" href="https://breizh-agrimat.com/">
+<link rel="alternate" hreflang="de" href="https://breizh-agrimat.com/">
+<link rel="alternate" hreflang="x-default" href="https://breizh-agrimat.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Breizh Agrimat",
+  "description": "Independent French broker for used agricultural equipment across Europe",
+  "url": "https://breizh-agrimat.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Esteban Massue",
+    "birthPlace": "Treffendel, Brittany, France"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Treffendel",
+    "addressRegion": "Brittany",
+    "postalCode": "35380",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33769499010",
+  "email": "estebanm.0904@gmail.com",
+  "areaServed": "Europe",
+  "knowsLanguage": ["en", "fr", "de"]
+}
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Breizh Agrimat home">
+    <div class="brand-mark" aria-hidden="true">BA</div>
+    <div class="brand-text">
+      <div class="brand-name">Breizh Agrimat</div>
+      <div class="brand-sub">Used Agricultural Equipment</div>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <div class="header-links">
+      <a href="/stock/" data-i18n="nav.stock">Stock</a>
+      <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+      <a href="/a-propos/" data-i18n="nav.about">About</a>
+      <a href="/contact/" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+      <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="nav.browse">Browse stock</a>
+    </div>
+  </nav>
+  <button class="menu-toggle" aria-label="Menu"><span></span></button>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="/stock/" data-i18n="nav.stock">Stock</a>
+  <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+  <a href="/a-propos/" data-i18n="nav.about">About</a>
+  <a href="/contact/" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('/assets/hero.jpg')"></div>
+  <div class="container hero-inner">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      <span data-i18n="hero.tag">Stock updated weekly</span>
+    </div>
+    <h1 data-i18n-html="hero.title">Used farm equipment, sourced and verified across Europe.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">An independent French broker. Trilingual. Pan-European reach.</p>
+    <div class="hero-ctas">
+      <a href="/stock/" class="btn btn--primary btn--lg" data-i18n="hero.cta.browse">Browse stock</a>
+      <a href="/vendre/" class="btn btn--secondary btn--lg" data-i18n="hero.cta.sell">Sell your equipment</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span data-counter="1000" data-counter-suffix="+">1,000+</span></div>
+        <div class="hero-stat-lbl" data-i18n="hero.stat.machines">machines sold</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span data-counter="12" data-counter-suffix="+">12+</span></div>
+        <div class="hero-stat-lbl" data-i18n="hero.stat.countries">European countries</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span class="accent">EN</span> · <span class="accent">FR</span> · <span class="accent">DE</span></div>
+        <div class="hero-stat-lbl" data-i18n="hero.stat.trilingual">Trilingual: EN · FR · DE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-label" data-i18n="marquee.label">Trusted brands we work with</div>
+  <div class="marquee-track" aria-hidden="true">
+    <span class="marquee-item">John Deere</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Claas</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Fendt</span><span class="marquee-sep"></span>
+    <span class="marquee-item">New Holland</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Massey Ferguson</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Case IH</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Valtra</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Deutz-Fahr</span><span class="marquee-sep"></span>
+    <span class="marquee-item">John Deere</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Claas</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Fendt</span><span class="marquee-sep"></span>
+    <span class="marquee-item">New Holland</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Massey Ferguson</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Case IH</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Valtra</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Deutz-Fahr</span><span class="marquee-sep"></span>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars section" id="approach">
+  <div class="container">
+    <div class="pillars-header">
+      <div class="overline" data-i18n="pillars.overline">Our approach</div>
+      <h2 data-i18n="pillars.title">Four pillars of trust</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar reveal">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.1.title">Pan-European sourcing</h3>
+        <p data-i18n="pillar.1.desc">Equipment found across France, UK, Germany, Netherlands, Poland, and more.</p>
+      </div>
+      <div class="pillar reveal reveal-d1">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.2.title">Independent inspection</h3>
+        <p data-i18n="pillar.2.desc">Every machine physically checked by a verified expert before purchase.</p>
+      </div>
+      <div class="pillar reveal reveal-d2">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.3.title">Verified sellers</h3>
+        <p data-i18n="pillar.3.desc">Full KYC and document validation. No unknown intermediaries.</p>
+      </div>
+      <div class="pillar reveal reveal-d3">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 data-i18n="pillar.4.title">End-to-end handling</h3>
+        <p data-i18n="pillar.4.desc">Paperwork, export documents, transport: we handle it all so you don't have to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="stepper section">
+  <div class="container">
+    <div class="stepper-header">
+      <div class="overline" data-i18n="stepper.overline">How it works</div>
+      <h2 data-i18n="stepper.title">From search to delivery</h2>
+    </div>
+    <div class="stepper-track">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h4 data-i18n="step.1.title">Tell us what you need</h4>
+          <p data-i18n="step.1.desc">Brand, model, budget, timeline.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h4 data-i18n="step.2.title">We source across Europe</h4>
+          <p data-i18n="step.2.desc">Our network spans 12+ countries.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h4 data-i18n="step.3.title">We inspect & verify</h4>
+          <p data-i18n="step.3.desc">Independent expert on-site check.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <h4 data-i18n="step.4.title">Paperwork & shipping</h4>
+          <p data-i18n="step.4.desc">Export docs, invoicing, logistics.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <h4 data-i18n="step.5.title">Delivered to your door</h4>
+          <p data-i18n="step.5.desc">The machine arrives ready to work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED STOCK -->
+<section class="featured section" id="featured">
+  <div class="container">
+    <div class="featured-header">
+      <div>
+        <div class="overline" data-i18n="featured.overline">Featured stock</div>
+        <h2 data-i18n="featured.title">Latest arrivals</h2>
+      </div>
+      <a href="/stock/" class="btn btn--outline" data-i18n="featured.viewall">View all stock</a>
+    </div>
+    <div class="featured-grid">
+      <div class="eq-card reveal">
+        <div class="eq-card-img">
+          <div class="eq-card-img-empty">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="eq-card-brand">John Deere</div>
+          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
+        </div>
+        <div class="eq-card-body">
+          <div class="eq-card-title">John Deere 6130M</div>
+          <div class="eq-card-tagline">Premium condition, full service history</div>
+          <div class="eq-card-specs">
+            <div class="eq-card-spec"><div class="eq-card-spec-val">2019</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">3,200h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">130hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
+          </div>
+          <div class="eq-card-bottom">
+            <div>
+              <div class="eq-card-price">&euro;52,000</div>
+              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
+            </div>
+            <div class="eq-card-btns">
+              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="eq-card reveal reveal-d1">
+        <div class="eq-card-img">
+          <div class="eq-card-img-empty">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="eq-card-brand">Fendt</div>
+          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
+        </div>
+        <div class="eq-card-body">
+          <div class="eq-card-title">Fendt 720 Profi+</div>
+          <div class="eq-card-tagline">Vario transmission, front loader ready</div>
+          <div class="eq-card-specs">
+            <div class="eq-card-spec"><div class="eq-card-spec-val">2018</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">4,100h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">209hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
+          </div>
+          <div class="eq-card-bottom">
+            <div>
+              <div class="eq-card-price">&euro;78,000</div>
+              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
+            </div>
+            <div class="eq-card-btns">
+              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="eq-card reveal reveal-d2">
+        <div class="eq-card-img">
+          <div class="eq-card-img-empty">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="eq-card-brand">Claas</div>
+          <div class="eq-card-avail"><span class="eq-card-avail-dot"></span><span data-i18n="stock.available">Available</span></div>
+        </div>
+        <div class="eq-card-body">
+          <div class="eq-card-title">Claas Arion 640</div>
+          <div class="eq-card-tagline">CEBIS, 50km/h, air suspension</div>
+          <div class="eq-card-specs">
+            <div class="eq-card-spec"><div class="eq-card-spec-val">2017</div><div class="eq-card-spec-lbl" data-i18n="stock.year">Year</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">5,800h</div><div class="eq-card-spec-lbl" data-i18n="stock.hours">Hours</div></div>
+            <div class="eq-card-spec"><div class="eq-card-spec-val">155hp</div><div class="eq-card-spec-lbl" data-i18n="stock.power">Power</div></div>
+          </div>
+          <div class="eq-card-bottom">
+            <div>
+              <div class="eq-card-price">&euro;45,000</div>
+              <div class="eq-card-price-note" data-i18n="stock.exworks">Ex-works</div>
+            </div>
+            <div class="eq-card-btns">
+              <a href="/stock/" class="btn btn--primary btn--sm" data-i18n="stock.details">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story section--lg" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-image reveal">
+        <div class="story-image-placeholder">assets/esteban.jpg</div>
+      </div>
+      <div class="story-content">
+        <div class="overline reveal" data-i18n="story.overline">Our story</div>
+        <h2 class="reveal" data-i18n="story.title">Founded by a farmer's son in Brittany</h2>
+        <p class="reveal" data-i18n="story.p1">Esteban Massue grew up on a Breton farm in Treffendel, Ille-et-Vilaine.</p>
+        <p class="reveal" data-i18n="story.p2">At 21, he founded Breizh Agrimat to help farmers sell their used equipment — like a real estate agent for tractors.</p>
+        <p class="reveal" data-i18n="story.p3">After two years, 1,000+ machines sold and recognition from major French agricultural press, he's now scaling the model across Europe.</p>
+        <div class="press-logos reveal">
+          <span class="text-muted" style="font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;text-transform:uppercase" data-i18n="story.press">As featured in</span>
+          <a href="https://www.francebleu.fr/infos/economie-social/la-nouvelle-eco-esteban-massue-cree-le-bon-coin-des-agriculteurs-bretons-1634818691" class="press-logo" target="_blank" rel="noopener">France Bleu</a>
+          <a href="https://www.reussir.fr/machinisme/pourquoi-faire-appel-un-mandataire-agricole-pour-vendre-ses-materiels-doccasion" class="press-logo" target="_blank" rel="noopener">Réussir</a>
+          <a href="https://www.materielagricole.info/dans-ma-ferme/article/731627/esteban-massue-breizh-agrimat-vendre-son-materiel-na-jamais-ete-aussi-simple" class="press-logo" target="_blank" rel="noopener">Matériel Agricole Info</a>
+          <a href="https://www.terre-net-occasions.fr/breizh-agrimat/o71525" class="press-logo" target="_blank" rel="noopener">Terre-net</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="overline" data-i18n="testimonials.overline">Testimonials</div>
+      <h2 data-i18n="testimonials.title">Trusted across Europe</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial reveal">
+        <div class="testimonial-quote">Esteban delivered exactly what we asked for: a clean Fendt 720 Profi+ inspected, paperwork ready, on a truck within ten days. We've ordered three more since.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JD</div>
+          <div class="testimonial-info">
+            <div class="testimonial-name">James Doubleday</div>
+            <div class="testimonial-role">Doubleday Group</div>
+          </div>
+          <div class="testimonial-country">United Kingdom</div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-d1">
+        <div class="testimonial-quote">The verification report saved us a 1,200 km round-trip. Honest assessment, fair price, and the transport was handled door-to-door. Exactly the partner we needed in France.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div class="testimonial-info">
+            <div class="testimonial-name">Marek Kowalski</div>
+            <div class="testimonial-role">Agro-Trade Polska</div>
+          </div>
+          <div class="testimonial-country">Poland</div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-d2">
+        <div class="testimonial-quote">J'ai vendu mon Massey Ferguson sans bouger de la ferme. Esteban s'est occupé des photos, des appels, du contrat. Plus rapide et plus serein qu'une vente directe.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">PG</div>
+          <div class="testimonial-info">
+            <div class="testimonial-name">Pierre Le Goff</div>
+            <div class="testimonial-role">EARL des Quatre Vents</div>
+          </div>
+          <div class="testimonial-country">France</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUAL CTA -->
+<section class="dual-cta section">
+  <div class="container">
+    <div class="dual-cta-grid">
+      <div class="dual-cta-card reveal">
+        <div class="overline" data-i18n="cta.buy.overline">For buyers</div>
+        <h3 data-i18n="cta.buy.title">Looking for a specific machine?</h3>
+        <p data-i18n="cta.buy.desc">Tell us what you need. We'll source it across Europe within 14 days.</p>
+        <a href="/contact/" class="btn btn--primary btn--lg" data-i18n="cta.buy.btn">Send a request</a>
+      </div>
+      <div class="dual-cta-card reveal reveal-d1">
+        <div class="overline" data-i18n="cta.sell.overline">For sellers</div>
+        <h3 data-i18n="cta.sell.title">Have a machine to sell?</h3>
+        <p data-i18n="cta.sell.desc">Get a free valuation in 48h. We handle the rest.</p>
+        <a href="/vendre/" class="btn btn--outline btn--lg" data-i18n="cta.sell.btn">Get a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">BREIZH AGRIMAT</div>
+        <p class="brand-tagline" data-i18n="footer.tagline">Used farm equipment, sourced and verified across Europe.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.nav">Navigation</h4>
+        <a href="/stock/" data-i18n="nav.stock">Stock</a>
+        <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+        <a href="/a-propos/" data-i18n="nav.about">About</a>
+        <a href="/contact/" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="https://wa.me/33769499010" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:estebanm.0904@gmail.com">estebanm.0904@gmail.com</a>
+        <a href="tel:+33769499010">+33 7 69 49 90 10</a>
+        <span style="color:var(--text-faint);font-size:var(--text-xs);margin-top:var(--space-2);display:block" data-i18n="footer.hours">Mon-Sat 8AM-8PM CET</span>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-i18n="footer.copy">&copy; 2026 Breizh Agrimat. Founded in Brittany, France.</div>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/33769499010?text=Hello%20Esteban%2C%20I%27m%20interested%20in%20your%20stock." target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+</a>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/i18n.js" defer></script>
+<script src="/scripts.js" defer></script>
+</body>
+</html>

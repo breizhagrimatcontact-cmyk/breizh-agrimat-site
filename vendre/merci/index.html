@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — Breizh Agrimat</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Breizh Agrimat home">
+    <div class="brand-mark" aria-hidden="true">BA</div>
+    <div class="brand-text">
+      <div class="brand-name">Breizh Agrimat</div>
+      <div class="brand-sub">Used Agricultural Equipment</div>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <div class="header-links">
+      <a href="/stock/" data-i18n="nav.stock">Stock</a>
+      <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+      <a href="/a-propos/" data-i18n="nav.about">About</a>
+      <a href="/contact/" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </nav>
+  <button class="menu-toggle" aria-label="Menu"><span></span></button>
+</header>
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="/stock/" data-i18n="nav.stock">Stock</a>
+  <a href="/vendre/" data-i18n="nav.sell">Sell</a>
+  <a href="/a-propos/" data-i18n="nav.about">About</a>
+  <a href="/contact/" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+  </div>
+</nav>
+
+<!-- THANK YOU -->
+<section class="thankyou">
+  <div class="thankyou-card">
+    <div class="thankyou-icon">
+      <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1 data-i18n="thankyou.title">Request received</h1>
+    <p data-i18n="thankyou.desc">Thank you for your submission. Here's what happens next:</p>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="timeline-marker">01</div>
+        <div class="timeline-content">
+          <h4 data-i18n="thankyou.step1.title">We contact you</h4>
+          <p data-i18n="thankyou.step1.desc">Within 48h for a quick chat.</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-marker">02</div>
+        <div class="timeline-content">
+          <h4 data-i18n="thankyou.step2.title">Photos & verification</h4>
+          <p data-i18n="thankyou.step2.desc">Day 3-7: we organise the shoot and check.</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-marker">03</div>
+        <div class="timeline-content">
+          <h4 data-i18n="thankyou.step3.title">Listed across Europe</h4>
+          <p data-i18n="thankyou.step3.desc">Week 2: your machine is live on our network.</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-marker">04</div>
+        <div class="timeline-content">
+          <h4 data-i18n="thankyou.step4.title">Sale closed</h4>
+          <p data-i18n="thankyou.step4.desc">We handle paperwork. You get paid.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="/" class="btn btn--primary btn--lg" data-i18n="thankyou.back">Back to home</a>
+  </div>
+</section>
+
+<script src="/i18n.js" defer></script>
+<script src="/scripts.js" defer></script>
+</body>
+</html>
