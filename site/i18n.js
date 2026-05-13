@@ -23,9 +23,9 @@ const TRANSLATIONS = {
     de: "Gebrauchte Landmaschinen, europaweit gefunden und geprüft."
   },
   "hero.sub": {
-    en: "An independent French broker. Trilingual. Pan-European reach.",
-    fr: "Un mandataire français indépendant. Trilingue. Couverture pan-européenne.",
-    de: "Ein unabhängiger französischer Makler. Dreisprachig. Europäische Reichweite."
+    en: "Sell your equipment with confidence, anywhere in Europe.",
+    fr: "Revendez votre matériel en toute confiance, partout en Europe.",
+    de: "Verkaufen Sie Ihre Maschinen sicher, europaweit."
   },
   "hero.cta.browse": { en: "Browse stock", fr: "Voir le stock", de: "Bestand ansehen" },
   "hero.cta.sell": { en: "Sell your equipment", fr: "Vendez votre matériel", de: "Verkaufen Sie Ihre Maschine" },
