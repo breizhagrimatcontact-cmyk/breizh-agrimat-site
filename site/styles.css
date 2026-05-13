@@ -453,11 +453,13 @@ p{line-height:1.7}
 }
 .eq-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .eq-card-img{
-  aspect-ratio:4/3;background:#f3f4f0;
-  position:relative;overflow:hidden;
-  min-height:280px;
+  width:100%;
+  aspect-ratio:4 / 3;
+  background:#ecf0e8;
+  overflow:hidden;
+  position:relative;
 }
-.eq-card-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.6s var(--ease-out)}
+.eq-card-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 0.6s var(--ease-out)}
 .eq-card:hover .eq-card-img img{transform:scale(1.04)}
 .eq-card-img-empty{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -755,9 +757,17 @@ p{line-height:1.7}
 .modal-close:hover{background:var(--bg-elevated);color:var(--text);border-color:var(--border-hover)}
 .modal-body{padding:var(--space-6) var(--space-8) var(--space-8)}
 
-.gallery{position:relative;border-radius:var(--radius-md);overflow:hidden;background:#f3f4f0;margin-bottom:var(--space-5)}
-.gallery-main{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.gallery-main img{width:100%;height:100%;object-fit:contain;transition:opacity 0.25s}
+.gallery{position:relative;border-radius:var(--radius-md);overflow:hidden;background:#ecf0e8;margin-bottom:var(--space-5)}
+.gallery-main{
+  width:100%;
+  aspect-ratio:4 / 3;
+  background:#ecf0e8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.gallery-main img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity 0.25s}
 .gallery-main .no-photo{color:var(--text-muted);font-size:var(--text-sm)}
 .gal-nav{
   position:absolute;top:50%;transform:translateY(-50%);
@@ -1070,7 +1080,8 @@ p{line-height:1.7}
   .filter-bar{gap:var(--space-2)}
   .filter-search{max-width:none}
 
-  .eq-card-img{min-height:240px}
+  .eq-card-img{aspect-ratio:3 / 2}
+  .gallery-main{aspect-ratio:4 / 3}
   .eq-card-body{padding:var(--space-4) var(--space-5) var(--space-5)}
   .eq-card-bottom{flex-direction:column;align-items:stretch;gap:var(--space-3)}
   .eq-card-btns{width:100%}
