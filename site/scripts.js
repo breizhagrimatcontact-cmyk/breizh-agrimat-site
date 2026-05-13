@@ -212,6 +212,22 @@ function waLink(eq) {
   return `https://wa.me/33769499010?text=${encodeURIComponent(txt)}`;
 }
 
+// ===== MOBILE FILTER BAR HIDE ON SCROLL =====
+function initFilterScroll() {
+  var filters = document.querySelector('.filters');
+  if (!filters || window.innerWidth > 768) return;
+  var lastY = window.scrollY;
+  window.addEventListener('scroll', function() {
+    var y = window.scrollY;
+    if (y > lastY && y > 140) {
+      filters.classList.add('filters--hidden');
+    } else {
+      filters.classList.remove('filters--hidden');
+    }
+    lastY = y;
+  }, {passive: true});
+}
+
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof I18N !== 'undefined') I18N.init();
@@ -220,4 +236,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroAnimations();
   initScrollAnimations();
   initSplide();
+  initFilterScroll();
 });
