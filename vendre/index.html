@@ -20,7 +20,7 @@
 <!-- HEADER -->
 <header class="site-header">
   <a href="/" class="brand" aria-label="Breizh Agrimat home">
-    <img src="/assets/logo-light.png" alt="Breizh Agrimat" class="logo-img">
+    <img src="/assets/logo-dark.png" alt="Breizh Agrimat" class="logo-img">
   </a>
   <nav class="header-nav">
     <div class="header-links">
@@ -128,14 +128,8 @@
 
           <!-- Equipment info -->
           <div class="form-group">
-            <label class="form-label" data-i18n="sell.field.eqtype">Equipment type</label>
-            <select name="equipment_type" class="form-select">
-              <option value="Tractor">Tractor</option>
-              <option value="Combine">Combine harvester</option>
-              <option value="Forage harvester">Forage harvester</option>
-              <option value="Implement">Implement</option>
-              <option value="Other">Other</option>
-            </select>
+            <label class="form-label" data-i18n="sell.field.eqtype">What are you selling? <span class="required">*</span></label>
+            <input type="text" name="equipment_type" class="form-input" required placeholder="e.g. John Deere 6155M tractor, Claas Lexion combine, Krone baler..." data-i18n-placeholder="sell.field.eqtype.placeholder">
           </div>
           <div class="form-group">
             <label class="form-label" data-i18n="sell.field.brand">Brand</label>
